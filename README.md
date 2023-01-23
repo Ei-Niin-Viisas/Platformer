@@ -1,6 +1,6 @@
 # Platformer
 Pakolliset pelimekaniikat:
-- Paras mahdollinen
+- Paras mahdollinen Super Mario kopio!
 - Hahmo hyppii ja liikkuu
 - Kerättäviä juttuja → pisteitä (lisärejä ehkä)
 - Speed-up
