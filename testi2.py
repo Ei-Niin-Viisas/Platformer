@@ -51,12 +51,15 @@ class Player(pygame.sprite.Sprite):
 
     def update(self):
         hits = pygame.sprite.spritecollide(P1 , platforms, False)
-        if hits:
-            self.pos.y = hits[0].rect.top + 1
-            self.vel.y = 0
+        if P1.vel.y > 0:
+            if hits:
+                self.pos.y = hits[0].rect.top+1
+                self.vel.y = 0
 
     def jump(self):
-        self.vel.y = -15
+        hits = pygame.sprite.spritecollide(self, platforms, False)
+        if hits:
+            self.vel.y = -15
 
 class platform(pygame.sprite.Sprite):
     def __init__(self):
