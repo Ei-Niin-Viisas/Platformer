@@ -1,6 +1,8 @@
 import pygame
 from Valikot.paaValikko import paaValikko
 
+#main-funktio
+#sisältää vain turhaa testikoodia
 def main():
     print("Toimii")
     sana:str = "tuloste"
@@ -8,5 +10,6 @@ def main():
     valikko.tulosta()
 
 
+#Kutsutaan main-funktiota
 if __name__ == "__main__":
     main()
