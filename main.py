@@ -1,9 +1,11 @@
 import pygame
-from Valikot.paaValikko import lataaValikko
+from Valikot.paaValikko import paaValikko
 
 def main():
     print("Toimii")
-    lataaValikko()
+    sana:str = "tuloste"
+    valikko = paaValikko(sana)
+    valikko.tulosta()
 
 
 if __name__ == "__main__":
