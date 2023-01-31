@@ -1,12 +1,10 @@
 import pygame, sys
-from button import Button
-from testi2 import WIDTH, HEIGHT
+from Valikot.button import *
+#from testi2 import WIDTH, HEIGHT
 
-pygame.init()
-
-SCREEN = pygame.display.set_mode((WIDTH, HEIGHT))
+SCREEN = pygame.display.set_mode((450, 400))
 pygame.display.set_caption("Menu")
-BG = pygame.image.load("assets/Background.png")
+BG = pygame.image.load("testi.jpg")
 
 #Luodaan luokka/olio päävalikolle
 class paaValikko:    
@@ -18,3 +16,5 @@ class paaValikko:
     def tulosta(self):
         print(self.sana)
 
+while True:
+    print("toimii")
