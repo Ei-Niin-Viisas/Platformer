@@ -11,7 +11,7 @@ class paaValikko:
     #olion konstruktori
     def __init__(self, testi:str):
         self.sana = testi
-        nappi1 = Button()
+        #nappi1 = Button()
 
     #olion testimetodi
     def tulosta(self):

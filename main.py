@@ -1,14 +1,17 @@
-import pygame, time
+import pygame
 from Valikot.paaValikko import paaValikko
+from asetukset import asetukset 
 
 
 #main-funktio
 #sisältää vain turhaa testikoodia
 def main():
-    FPS = 60
-    sana:str = "tuloste"
-    valikko = paaValikko(sana)
+    Set = asetukset(1)
+    FPS = Set.anna()
     FramePerSec = pygame.time.Clock()
+
+
+    valikko = paaValikko("sana")
     #Game-Active variaabeli
     running = True
     # Gameloop
@@ -18,6 +21,7 @@ def main():
             if event.type == pygame.QUIT:
                 running = False
         FramePerSec.tick(FPS)
+        print(FPS)
 
 
 
