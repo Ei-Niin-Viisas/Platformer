@@ -8,24 +8,15 @@ def main():
     print("Toimii")
     sana:str = "tuloste"
     valikko = paaValikko(sana)
-    while True:
-        time.sleep(2)
-        valikko.tulosta()
-        
-
-
-
-#Game-Active variaabeli
-running = True
-while running:
-# Gameloop
-
+    #Game-Active variaabeli
+    running = True
+    # Gameloop
+    while running:
     #Check For Quit
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
 
-#    Button()
 
 
 #Kutsutaan main-funktiota
