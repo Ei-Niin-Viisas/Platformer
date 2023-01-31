@@ -4,7 +4,7 @@ from Valikot.button import *
 
 SCREEN = pygame.display.set_mode((450, 400))
 pygame.display.set_caption("Menu")
-BG = pygame.image.load("testi.jpg")
+#BG = pygame.image.load("testi.jpg")
 
 #Luodaan luokka/olio päävalikolle
 class paaValikko:    
@@ -15,6 +15,3 @@ class paaValikko:
     #olion testimetodi
     def tulosta(self):
         print(self.sana)
-
-while True:
-    print("toimii")
