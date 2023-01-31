@@ -1,5 +1,5 @@
-import pygame
-from Valikot.paaValikko import *
+import pygame, time
+from Valikot.paaValikko import paaValikko
 
 
 #main-funktio
@@ -8,7 +8,12 @@ def main():
     print("Toimii")
     sana:str = "tuloste"
     valikko = paaValikko(sana)
-    valikko.tulosta()
+    while True:
+        time.sleep(2)
+        valikko.tulosta()
+        
+
+
 
 #    Button()
 
