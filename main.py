@@ -10,6 +10,16 @@ def main():
     valikko = paaValikko(sana)
     valikko.tulosta()
 
+#Game-Active variaabeli
+running = True
+while running:
+# Gameloop
+
+    #Check For Quit
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
 #    Button()
 
 
