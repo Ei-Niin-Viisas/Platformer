@@ -6,9 +6,13 @@ from asetukset import asetukset
 #main-funktio
 #sisältää vain turhaa testikoodia
 def main():
-    Set = asetukset(1)
-    FPS = Set.arvot()
-    SCREEN = pygame.display.set_mode((450, 400))
+    Setting = asetukset(1)
+    lista = Setting.arvot()
+    FPS = lista[0]
+    HEIGHT = lista[1]
+    WIDHT = lista[2]
+
+    SCREEN = pygame.display.set_mode((WIDHT, HEIGHT))
     FramePerSec = pygame.time.Clock()
 
 

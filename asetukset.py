@@ -4,6 +4,7 @@ class asetukset:
     
     def arvot(self):
         if self.versio == 1:
-            return 60
+            lista = [60, 720, 1280]
+            return lista
         else:
             return 120
