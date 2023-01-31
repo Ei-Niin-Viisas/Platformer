@@ -7,7 +7,8 @@ from asetukset import asetukset
 #sisältää vain turhaa testikoodia
 def main():
     Set = asetukset(1)
-    FPS = Set.anna()
+    FPS = Set.arvot()
+    SCREEN = pygame.display.set_mode((450, 400))
     FramePerSec = pygame.time.Clock()
 
 
