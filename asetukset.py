@@ -7,4 +7,4 @@ class asetukset:
             lista = [60, 720, 1280]
             return lista
         else:
-            return 120
+            return [120, 1080, 1920]

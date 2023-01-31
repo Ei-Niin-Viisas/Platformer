@@ -1,4 +1,4 @@
-import pygame
+import pygame, os, time
 from Valikot.paaValikko import paaValikko
 from asetukset import asetukset 
 
@@ -11,10 +11,15 @@ def main():
     FPS = lista[0]
     HEIGHT = lista[1]
     WIDHT = lista[2]
-
+    
+    x = (1920-WIDHT)/2
+    y = (1080-HEIGHT)/2
+    os.environ['SDL_VIDEO_WINDOW_POS'] = "%d,%d" % (x,y)
+    pygame.init()
     SCREEN = pygame.display.set_mode((WIDHT, HEIGHT))
+    
     FramePerSec = pygame.time.Clock()
-
+    
 
     valikko = paaValikko("sana")
     #Game-Active variaabeli
@@ -32,5 +37,5 @@ def main():
 
 #Kutsutaan main-funktiota
 if __name__ == "__main__":
-    pygame.init()
+    #pygame.init()
     main()
