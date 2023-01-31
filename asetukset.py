@@ -2,6 +2,7 @@ class asetukset:
     def __init__(self, versio:int):
         self.versio = versio
     
+    #Palauttaa fps:n ja resoluution
     def arvot(self):
         if self.versio == 1:
             lista = [60, 720, 1280]
