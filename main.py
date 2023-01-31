@@ -5,9 +5,10 @@ from Valikot.paaValikko import paaValikko
 #main-funktio
 #sisältää vain turhaa testikoodia
 def main():
-    print("Toimii")
+    FPS = 60
     sana:str = "tuloste"
     valikko = paaValikko(sana)
+    FramePerSec = pygame.time.Clock()
     #Game-Active variaabeli
     running = True
     # Gameloop
@@ -16,6 +17,7 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+        FramePerSec.tick(FPS)
 
 
 
