@@ -17,12 +17,15 @@ def main():
     x = (1920-WIDHT)/2
     y = (1080-HEIGHT)/2
     os.environ['SDL_VIDEO_WINDOW_POS'] = "%d,%d" % (x,y)
+    
+    #Avaa ikkunan
     pygame.init()
     SCREEN = pygame.display.set_mode((WIDHT, HEIGHT))
     
+    #Luo kello-olion
     FramePerSec = pygame.time.Clock()
     
-
+    #Kutsuu valikko-oliota
     valikko = paaValikko("sana")
     #Game-Active variaabeli
     running = True
