@@ -15,6 +15,7 @@ class paaValikko:
     
     def play(self):
         pygame.display.set_caption("Play")
+        palaa:bool = False
     
         while True:
             PLAY_MOUSE_POS = pygame.mouse.get_pos()
@@ -37,14 +38,17 @@ class paaValikko:
                     sys.exit()
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if PLAY_BACK.checkForInput(PLAY_MOUSE_POS):
-                        self.main_menu()
+                        #self.main_menu()
+                        palaa = True
                         
+            pygame.display.update()
 
-            pygame.display.update()         
+            if palaa:
+                break  
         
     def options(self):
         pygame.display.set_caption("Options")
-        print("Siirryit valikkoon")
+        palaa = False
         
         while True:
             OPTIONS_MOUSE_POS = pygame.mouse.get_pos()
@@ -67,9 +71,12 @@ class paaValikko:
                     sys.exit()
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if OPTIONS_BACK.checkForInput(OPTIONS_MOUSE_POS):
-                        self.main_menu()
+                        #self.main_menu()
+                        palaa = True
 
             pygame.display.update()
+            if palaa:
+                break
 
     def main_menu(self):
         pygame.display.set_caption("Menu")
@@ -101,7 +108,8 @@ class paaValikko:
                     sys.exit()
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if PLAY_BUTTON.checkForInput(MENU_MOUSE_POS):
-                        self.play()
+                        #self.play()
+                        return
                     if OPTIONS_BUTTON.checkForInput(MENU_MOUSE_POS):
                         self.options()
                     if QUIT_BUTTON.checkForInput(MENU_MOUSE_POS):
