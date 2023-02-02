@@ -1,7 +1,7 @@
 import pygame, os, time
 from Valikot.paaValikko import paaValikko
-from asetukset import asetukset 
-
+from asetukset import asetukset
+from threading import Thread
 
 #main-funktio
 #sisältää vain turhaa testikoodia
@@ -29,6 +29,7 @@ def main():
     valikko = paaValikko("sana")
     #Game-Active variaabeli
     running = True
+    
     # Gameloop
     while running:
     #Check For Quit

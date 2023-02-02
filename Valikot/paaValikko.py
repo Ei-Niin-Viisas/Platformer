@@ -10,7 +10,7 @@ class paaValikko:
     #olion konstruktori
     def __init__(self, testi:str):
         self.sana = testi
-        #nappi1 = Button()
+        nappi1 = Button(None, [100,100], "nappula", "Arial","black", "white")
 
     #olion testimetodi
     def tulosta(self):
