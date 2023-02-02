@@ -29,6 +29,9 @@ def main():
     valikko = paaValikko(SCREEN)
     valikko.main_menu()
     #Game-Active variaabeli
+    pygame.display.set_caption("Peli")
+    SCREEN.fill("blue")
+    
     running = True
     
     # Gameloop
@@ -39,6 +42,7 @@ def main():
                 running = False
         FramePerSec.tick(FPS)
         print(FPS)
+        pygame.display.update()
 
 
 
