@@ -26,7 +26,7 @@ def main():
     FramePerSec = pygame.time.Clock()
     
     #Kutsuu valikko-oliota
-    valikko = paaValikko("sana")
+    valikko = paaValikko(SCREEN)
     #Game-Active variaabeli
     running = True
     
