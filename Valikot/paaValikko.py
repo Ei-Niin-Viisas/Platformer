@@ -9,7 +9,6 @@ class paaValikko:
         self.SCREEN = SCREEN
         self.BG = pygame.image.load("pics/Background.png") 
         pygame.display.set_caption("Menu")
-        self.main_menu()
 
     def get_font(self, size):
         return pygame.font.Font("pics/font.ttf", size)
@@ -22,7 +21,7 @@ class paaValikko:
         
             self.SCREEN.fill("black")
             
-            PLAY_TEXT = self.get_font( 45).render("This is the play screen", True, "white")
+            PLAY_TEXT = self.get_font(45).render("This is the play screen", True, "white")
             PLAY_RECT = PLAY_TEXT.get_rect(center=(640, 260))
             self.SCREEN.blit(PLAY_TEXT, PLAY_RECT) 
             
@@ -45,19 +44,20 @@ class paaValikko:
         
     def options(self):
         pygame.display.set_caption("Options")
+        print("Siirryit valikkoon")
         
         while True:
             OPTIONS_MOUSE_POS = pygame.mouse.get_pos()
             
             self.SCREEN.fill("white")
             
-            OPTIONS_TEXT = self.get_font(45).render("This is OPTIONS screen.", True, "Black")
+            OPTIONS_TEXT = self.get_font(45).render("This is OPTIONS screen.", True, "black")
             OPTIONS_RECT = OPTIONS_TEXT.get_rect(center=(640, 260))
             self.SCREEN.blit(OPTIONS_TEXT, OPTIONS_RECT)
             
             OPTIONS_BACK = Button(image = None, pos=(640, 460),
-                                text_input="BACK", font=self.get_font(75), base_color="Black", hovering_color="Green")
-            
+                                text_input="white", font=self.get_font(75), base_color="black", hovering_color="Green")
+        
             OPTIONS_BACK.changeColor(OPTIONS_MOUSE_POS)
             OPTIONS_BACK.update(self.SCREEN)
             
@@ -68,7 +68,9 @@ class paaValikko:
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if OPTIONS_BACK.checkForInput(OPTIONS_MOUSE_POS):
                         self.main_menu()
-            
+
+            pygame.display.update()
+
     def main_menu(self):
         pygame.display.set_caption("Menu")
         

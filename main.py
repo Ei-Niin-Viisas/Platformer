@@ -27,6 +27,7 @@ def main():
     
     #Kutsuu valikko-oliota
     valikko = paaValikko(SCREEN)
+    valikko.main_menu()
     #Game-Active variaabeli
     running = True
     
