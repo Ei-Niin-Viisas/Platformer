@@ -60,7 +60,7 @@ class paaValikko:
             self.SCREEN.blit(OPTIONS_TEXT, OPTIONS_RECT)
             
             OPTIONS_BACK = Button(image = None, pos=(640, 460),
-                                text_input="white", font=self.get_font(75), base_color="black", hovering_color="Green")
+                                text_input="back", font=self.get_font(75), base_color="black", hovering_color="Green")
         
             OPTIONS_BACK.changeColor(OPTIONS_MOUSE_POS)
             OPTIONS_BACK.update(self.SCREEN)
