@@ -7,7 +7,7 @@ from threading import Thread
 #sisältää vain turhaa testikoodia
 def main():
     #Hakee fps:n ja näytön resoluution asetukset-oliosta
-    Setting = asetukset(1)
+    Setting = asetukset(2)
     lista = Setting.arvot()
     FPS = lista[0]
     HEIGHT = lista[1]
@@ -26,7 +26,7 @@ def main():
     FramePerSec = pygame.time.Clock()
     
     #Kutsuu valikko-oliota
-    valikko = paaValikko(SCREEN)
+    valikko = paaValikko(SCREEN, WIDHT, HEIGHT)
     valikko.main_menu()
     #Game-Active variaabeli
     pygame.display.set_caption("Peli")
