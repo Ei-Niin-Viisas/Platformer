@@ -1,4 +1,4 @@
-import pygame, sys
+import sys, pygame
 from Valikot.button import Button
 
 #####Hieno kommentti :))))

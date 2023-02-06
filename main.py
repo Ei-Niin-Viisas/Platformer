@@ -7,7 +7,7 @@ from threading import Thread
 #sisältää vain turhaa testikoodia
 def main():
     #Hakee fps:n ja näytön resoluution asetukset-oliosta
-    Setting = asetukset(2)
+    Setting = asetukset(1)
     lista = Setting.arvot()
     FPS = lista[0]
     HEIGHT = lista[1]
