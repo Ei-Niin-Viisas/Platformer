@@ -13,6 +13,9 @@ def main():
     HEIGHT = lista[1]
     WIDHT = lista[2]
     
+    #Tausta
+    bg = pygame.image.load("pics/Background.png")       #Tämän sijasta voisi olla lista, jotta saadaan kullekkin kentälle oma tausta
+    
     #Asettaa ikkunan keskelle näyttöä
     x = (1920-WIDHT)/2
     y = (1080-HEIGHT)/2
@@ -30,7 +33,7 @@ def main():
     valikko.main_menu()
     #Game-Active variaabeli
     pygame.display.set_caption("Peli")
-    SCREEN.fill("blue")
+    SCREEN.blit(bg, (0, 0))
     
     running = True
     
