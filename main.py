@@ -1,5 +1,6 @@
 import pygame, os, time
 from Valikot.paaValikko import paaValikko
+from Kentta.leveli import *
 from asetukset import asetukset
 from threading import Thread
 
@@ -33,15 +34,25 @@ def main():
     SCREEN.fill("blue")
     
     running = True
-    
+
+    PT1 = platform()    
+    kentta = taso(PT1)
+
+
     # Gameloop
     while running:
     #Check For Quit
+        SCREEN.fill((0,0,0))
+        kentta.testi(SCREEN)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+            if event.type == pygame.KEYDOWN:    
+                    if event.key == pygame.K_SPACE:
+                        PT1.vaihdaVari()
+        
         FramePerSec.tick(FPS)
-        print(FPS)
+        #print(FPS)
         pygame.display.update()
 
 
