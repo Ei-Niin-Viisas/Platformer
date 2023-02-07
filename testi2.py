@@ -1,7 +1,7 @@
 import pygame
 from pygame.locals import *
 import sys
-"""
+
 pygame.init()
 vec = pygame.math.Vector2  # 2 for two dimensional
  
@@ -14,7 +14,7 @@ FramePerSec = pygame.time.Clock()
  
 displaysurface = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Game")
-"""
+
 
 class Player(pygame.sprite.Sprite):
     
@@ -68,12 +68,12 @@ class Player(pygame.sprite.Sprite):
 class platform(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        self.surf = pygame.Surface((1280, 20))
+        self.surf = pygame.Surface((WIDTH, 20))
         self.surf.fill((255,0,0))
-        self.rect = self.surf.get_rect(center = (1280/2, 720 - 10))
+        self.rect = self.surf.get_rect(center = (WIDTH/2, HEIGHT - 10))
 
 
-"""
+
 PT1 = platform()
 P1 = Player()
 #P2 = Player()
@@ -106,4 +106,3 @@ while True:
     FramePerSec.tick(FPS)
     P1.move()
     P1.update()
-"""

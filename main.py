@@ -8,7 +8,7 @@ from threading import Thread
 #sisältää vain turhaa testikoodia
 def main():
     #Hakee fps:n ja näytön resoluution asetukset-oliosta
-    Setting = asetukset(1)
+    Setting = asetukset(2)
     lista = Setting.arvot()
     FPS = lista[0]
     HEIGHT = lista[1]
@@ -28,31 +28,30 @@ def main():
     
     #Kutsuu valikko-oliota
     valikko = paaValikko(SCREEN, WIDHT, HEIGHT)
-    valikko.main_menu()
-    #Game-Active variaabeli
-    pygame.display.set_caption("Peli")
-    SCREEN.fill("blue")
-    
-    running = True
 
-    PT1 = platform()    
-    kentta = taso(PT1)
+    #Kutsuu kentta-oliota
+    kentta = taso(SCREEN, WIDHT, HEIGHT)
+
+
+    #Game-Active variaabeli
+    running = True
 
 
     # Gameloop
     while running:
     #Check For Quit
-        SCREEN.fill((0,0,0))
-        kentta.testi(SCREEN)
+        #Siirtyy päävalikkoon
+        valikko.main_menu()
+
+        #Kutsuu kentan metodia testi, jonka on tarkoitus olla sandbox, 
+        #jossa voi kokeilla muita luokkia
+        kentta.testi()
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
-            if event.type == pygame.KEYDOWN:    
-                    if event.key == pygame.K_SPACE:
-                        PT1.vaihdaVari()
         
         FramePerSec.tick(FPS)
-        #print(FPS)
         pygame.display.update()
 
 
