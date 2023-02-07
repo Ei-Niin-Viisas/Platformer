@@ -1,6 +1,6 @@
 import pygame, os, time
 from Valikot.paaValikko import paaValikko
-from Kentta.leveli import *
+from Kentta.kentta import *
 from asetukset import asetukset
 from threading import Thread
 

@@ -82,9 +82,9 @@ class paaValikko:
                 break
 
     def main_menu(self):
-        pygame.display.set_caption("Menu")
         
         while True:
+            pygame.display.set_caption("Menu")
             self.SCREEN.blit(self.BG, (0 , 0))
             
             MENU_MOUSE_POS = pygame.mouse.get_pos()
