@@ -1,3 +1,5 @@
+
+"""
 print("Hello World")
 print("Jelou wöörldi")
 print("jotain")
@@ -11,3 +13,38 @@ pygame.init()
 screen = pygame.display.set_mode((100,400))
 
 time.sleep(2)
+"""
+import threading, time
+
+class testi:
+
+    def __init__(self):
+        self.numero = 0
+
+    def coder(self):
+        print("Coders: " + str(self.numero))
+        self.numero += 1
+        time.sleep(2)
+
+
+
+threads = []
+#for k in range(5):
+
+testi = testi()
+
+t = threading.Thread(target=testi.coder, args=())
+threads.append(t)
+t.start()
+
+time.sleep(1)
+print("hahaa")
+
+k = threading.Thread(target=testi.coder, args=())
+threads.append(k)
+k.start()
+
+t.join()
+k.join()
+
+print(testi.numero)

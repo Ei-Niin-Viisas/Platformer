@@ -1,14 +1,15 @@
-import pygame, os, time
+import pygame, os, sys, time
 from Valikot.paaValikko import paaValikko
 from Kentta.kentta import *
 from asetukset import asetukset
 from threading import Thread
 
+
 #main-funktio
 #sisältää vain turhaa testikoodia
 def main():
     #Hakee fps:n ja näytön resoluution asetukset-oliosta
-    Setting = asetukset(2)
+    Setting = asetukset(1)
     lista = Setting.arvot()
     FPS = lista[0]
     HEIGHT = lista[1]
@@ -35,7 +36,6 @@ def main():
 
     #Game-Active variaabeli
     running = True
-
 
     # Gameloop
     while running:

@@ -1,6 +1,8 @@
-import pygame, sys
+import pygame, sys, time
 from pygame.locals import *
 from Valikot.peliValikko import pauseValikko
+from threading import Thread
+from Kentta.ui import ui
 
 #Luokka 
 class taso:
@@ -14,6 +16,11 @@ class taso:
         self.WIDHT =  widht
         self.HEIGHT = height
         self.PT1 = platform(widht, height)
+        self.UI = ui(self.PT1)
+        
+        t = Thread(target=self.UI.paivitaUI, args=())
+        t.setDaemon(True)
+        t.start()
 
         self.all_sprites = pygame.sprite.Group()
         self.all_sprites.add(self.PT1)
@@ -59,13 +66,18 @@ class platform(pygame.sprite.Sprite):
         self.surf = pygame.Surface((width, 20))
         self.surf.fill((255,0,0))
         self.rect = self.surf.get_rect(center = (width/2, height - 10))
-        self.counter = True
+        self.counter = 0
 
     #Metodi, joka vaihtaa platformin väriä
     def vaihdaVari(self):
-        if self.counter:
+        if self.counter%2 == 0:
             self.surf.fill((0,255,255))
-            self.counter = False
+            self.counter += 1
         else:
             self.surf.fill((255,0,0))
-            self.counter = True
+            self.counter += 1
+
+    def naytaLaskuri(self):
+        while True:
+            print(self.counter)
+            time.sleep(1)

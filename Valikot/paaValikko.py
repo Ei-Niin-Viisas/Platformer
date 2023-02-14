@@ -1,8 +1,6 @@
 import sys, pygame
 from Valikot.button import Button
 
-#####Hieno kommentti :))))
-
 #Luodaan luokka/olio päävalikolle
 class paaValikko:    
     #olion konstruktori
