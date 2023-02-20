@@ -1,13 +1,13 @@
 import sys, pygame
 from Valikot.button import Button
 
-class pauseValikko():
+class pauseValikko(pygame.sprite.Sprite):
 
-    def __init__(self, screen, width, height, spritet:list):
+    def __init__(self, screen, width, height):
+        super().__init__()
         self.SCREEN = screen
         self.width = width/2
         self.height = height/2
-        self.spritet = spritet
 
 
     def valikko(self):
@@ -41,12 +41,14 @@ class pauseValikko():
                         return True
                     if self.width-150 <= mouse[0] <= self.width+300 and self.height/1.5+200 <= mouse[1] <= self.height/1.5+240: 
                         return False
-            
-            for entity in self.spritet:
-                self.SCREEN.blit(entity.surf, entity.rect)
+                
+                if ev.type == pygame.KEYDOWN:
+                    if ev.key == pygame.K_ESCAPE:
+                        return True
+                    
 
             # täyttää nelikulmion värillä
-            pygame.draw.rect(self.SCREEN,"blue",[self.width/2,self.height/2,self.width,self.height])
+            nelikulmio = pygame.draw.rect(self.SCREEN,"blue",[self.width/2,self.height/2,self.width,self.height])
             
             #self.rect = self.surf.get_rect(center = (self.width/2, self.height - 10))
 
@@ -72,4 +74,4 @@ class pauseValikko():
             self.SCREEN.blit(text2, (self.width-100, self.height/1.5+200)) 
             
             # updates the frames of the game 
-            pygame.display.update() 
+            pygame.display.update(nelikulmio)

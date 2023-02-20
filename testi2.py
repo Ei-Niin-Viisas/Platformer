@@ -72,6 +72,13 @@ class platform(pygame.sprite.Sprite):
         self.surf.fill((255,0,0))
         self.rect = self.surf.get_rect(center = (WIDTH/2, HEIGHT - 10))
 
+class tausta(pygame.sprite.Sprite):
+    def __init__(self):
+        super().__init__()
+        self.surf = pygame.Surface((WIDTH, HEIGHT))
+        self.surf.fill((0,0,0))
+        self.rect = self.surf.get_rect()
+
 
 
 PT1 = platform()
@@ -97,12 +104,15 @@ while True:
             if event.key == pygame.K_SPACE:
                 P1.jump()
      
-    displaysurface.fill((0,0,0))
+    jotain = displaysurface.fill((0,0,0))
  
+    testi = []
+    testi.append(jotain)
     for entity in all_sprites:
         displaysurface.blit(entity.surf, entity.rect)
+        testi.append(entity.rect)
  
-    pygame.display.update()
+    pygame.display.update(testi)
     FramePerSec.tick(FPS)
     P1.move()
     P1.update()

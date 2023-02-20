@@ -7,16 +7,16 @@ from Kentta.ui import ui
 #Luokka 
 class taso:
     #Tähän tason luonti sitten, kun se on tehty
-    def __init__(self, taso:list, player):
-        pass
+    #def __init__(self, taso:list, player):
+    #    pass
 
     #Sandboxin konstruktori
-    def __init__(self, screen, widht, height):
-        self.SCREEN = screen
+    def __init__(self, widht, height):
+        self.SCREEN = pygame.display.get_surface()
         self.WIDHT =  widht
         self.HEIGHT = height
         self.PT1 = platform(widht, height)
-        self.UI = ui(self.PT1)
+        self.UI = ui(self.PT1, self.SCREEN)
         
         t = Thread(target=self.UI.paivitaUI, args=())
         t.setDaemon(True)
@@ -29,9 +29,10 @@ class taso:
     #Testi-metodi, joka piirtää punaisen "lattian"
     def testi(self):
         pygame.display.set_caption("Peli")
+        self.SCREEN.fill((0,0,0))
+        pygame.display.flip()
 
         while True:
-            self.SCREEN.fill((0,0,0))
  
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -41,22 +42,24 @@ class taso:
                     if event.key == pygame.K_SPACE:
                         self.PT1.vaihdaVari()
                     elif event.key == pygame.K_ESCAPE:
-                        pause = pauseValikko(self.SCREEN, self.WIDHT, self.HEIGHT, self.all_sprites)
+                        pause = pauseValikko(self.SCREEN, self.WIDHT, self.HEIGHT)
                         jatka:bool = pause.valikko()
+                        self.SCREEN.fill("black")
+                        pygame.display.flip()
                         
                         if not jatka:
                             return
-            
+            piirto = []
+
             for entity in self.all_sprites:
                 self.SCREEN.blit(entity.surf, entity.rect)
+                piirto.append(entity.rect)
             
-            self.FramePerSec.tick(60)
-            pygame.display.update()
+            #pygame.sprite.LayeredUpdates.change_layer(self.PT1,1)
 
-            
-    #Teen tähän valikon
-    def valikko(self):
-        pass
+            self.FramePerSec.tick(60)
+            pygame.display.update(piirto)
+
 
 
 #Platform-luokka sandboxia varten
@@ -78,6 +81,4 @@ class platform(pygame.sprite.Sprite):
             self.counter += 1
 
     def naytaLaskuri(self):
-        while True:
-            print(self.counter)
-            time.sleep(1)
+        print(self.counter)

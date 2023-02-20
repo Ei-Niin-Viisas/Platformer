@@ -14,7 +14,7 @@ screen = pygame.display.set_mode((100,400))
 
 time.sleep(2)
 """
-import threading, time
+import threading, time, pygame
 
 class testi:
 
@@ -44,7 +44,12 @@ k = threading.Thread(target=testi.coder, args=())
 threads.append(k)
 k.start()
 
+pygame.init()
+pygame.display.set_mode((100,100))
+
 t.join()
 k.join()
+
+
 
 print(testi.numero)

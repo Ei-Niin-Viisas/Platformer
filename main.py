@@ -28,10 +28,10 @@ def main():
     FramePerSec = pygame.time.Clock()
     
     #Kutsuu valikko-oliota
-    valikko = paaValikko(SCREEN, WIDHT, HEIGHT)
+    valikko = paaValikko(WIDHT, HEIGHT)
 
     #Kutsuu kentta-oliota
-    kentta = taso(SCREEN, WIDHT, HEIGHT)
+    kentta = taso(WIDHT, HEIGHT)
 
 
     #Game-Active variaabeli
