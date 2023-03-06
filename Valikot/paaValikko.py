@@ -1,13 +1,11 @@
 import sys, pygame
 from Valikot.button import Button
 
-#####Hieno kommentti :))))
-
 #Luodaan luokka/olio päävalikolle
 class paaValikko:    
     #olion konstruktori
-    def __init__(self, screen, width, height):
-        self.SCREEN = screen
+    def __init__(self, width, height):
+        self.SCREEN = pygame.display.get_surface()
         self.WIDTH = width
         self.HEIGHT = height
         self.BG = pygame.image.load("pics/Background.png") 
@@ -82,9 +80,9 @@ class paaValikko:
                 break
 
     def main_menu(self):
-        pygame.display.set_caption("Menu")
         
         while True:
+            pygame.display.set_caption("Menu")
             self.SCREEN.blit(self.BG, (0 , 0))
             
             MENU_MOUSE_POS = pygame.mouse.get_pos()

@@ -1,7 +1,9 @@
-import pygame, os, time
+import pygame, os, sys, time
 from Valikot.paaValikko import paaValikko
+from Kentta.kentta import *
 from asetukset import asetukset
 from threading import Thread
+
 
 #main-funktio
 #sisältää vain turhaa testikoodia
@@ -26,22 +28,30 @@ def main():
     FramePerSec = pygame.time.Clock()
     
     #Kutsuu valikko-oliota
-    valikko = paaValikko(SCREEN, WIDHT, HEIGHT)
-    valikko.main_menu()
+    valikko = paaValikko(WIDHT, HEIGHT)
+
+    #Kutsuu kentta-oliota
+    kentta = taso(WIDHT, HEIGHT)
+
+
     #Game-Active variaabeli
-    pygame.display.set_caption("Peli")
-    SCREEN.fill("blue")
-    
     running = True
-    
+
     # Gameloop
     while running:
     #Check For Quit
+        #Siirtyy päävalikkoon
+        valikko.main_menu()
+
+        #Kutsuu kentan metodia testi, jonka on tarkoitus olla sandbox, 
+        #jossa voi kokeilla muita luokkia
+        kentta.testi()
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+        
         FramePerSec.tick(FPS)
-        print(FPS)
         pygame.display.update()
 
 
