@@ -20,9 +20,9 @@ class taso:
         self.PLAYER = player()
         self.UI = ui(self.PT1, self.SCREEN)
         
-        t = Thread(target=self.UI.paivitaUI, args=())
-        t.setDaemon(True)
-        t.start()
+        #t = Thread(target=self.UI.paivitaUI, args=())
+        #t.setDaemon(True)
+        #t.start()
 
         self.all_sprites = pygame.sprite.Group()
         self.alustat = pygame.sprite.Group()
@@ -47,7 +47,7 @@ class taso:
                     if event.key == pygame.K_ESCAPE:
                         pause = pauseValikko(self.SCREEN, self.WIDHT, self.HEIGHT)
                         jatka:bool = pause.valikko()
-                        self.SCREEN.fill("black")
+                        self.SCREEN.fill((0,0,0))
                         pygame.display.flip()
                         
                         if not jatka:
@@ -64,6 +64,7 @@ class taso:
             piirto = []
             piirto.append(tausta)
 
+
             for entity in self.all_sprites:
                 self.SCREEN.blit(entity.surf, entity.rect)
                 piirto.append(entity.rect)
@@ -72,6 +73,7 @@ class taso:
 
             self.FramePerSec.tick(60)
             pygame.display.update(piirto)
+
 
 
 
@@ -94,4 +96,5 @@ class platform(pygame.sprite.Sprite):
             self.counter += 1
 
     def naytaLaskuri(self):
-        print(self.counter)
+        #print(self.counter)
+        pass

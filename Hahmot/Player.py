@@ -9,9 +9,13 @@ class player(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
         self.vec = pygame.math.Vector2
-        self.surf = pygame.Surface((30, 30))
-        self.surf.fill((128,255,40))
+        self.animaatio = [pygame.image.load("pics/mario_1.jpg"),
+            pygame.image.load("pics/mario_2.jpg"), pygame.image.load("pics/mario_3.jpg")]
+
+
+        self.surf = pygame.Surface((80, 95))
         self.rect = self.surf.get_rect()
+        self.surf.blit(self.animaatio[0], self.rect)
    
         self.pos = self.vec((10, 200))
         self.vel = self.vec(0,0)
@@ -22,6 +26,9 @@ class player(pygame.sprite.Sprite):
 
         self.WIDTH, self.HEIGHT  = pygame.display.get_window_size()
 
+        self.counter = 0
+        self.suunta = True
+
     def move(self, alustat):
         hits = pygame.sprite.spritecollide(self, alustat, False)
 
@@ -29,13 +36,23 @@ class player(pygame.sprite.Sprite):
     
         pressed_keys = pygame.key.get_pressed()
         
-        if pressed_keys[K_LEFT]:
+        if pressed_keys[K_LEFT] or pressed_keys[K_a]:
             self.acc.x = -self.ACC
-        if pressed_keys[K_RIGHT]:
+            self.suunta = False
+        if pressed_keys[K_RIGHT or K_d] or pressed_keys[K_d]:
             self.acc.x = self.ACC
+            self.suunta = True
         if pressed_keys[K_SPACE]:
             if hits:
                 self.vel.y = -15
+
+        if (not pressed_keys[K_RIGHT] and not pressed_keys[K_d]) and (not pressed_keys[K_LEFT] and not pressed_keys[K_a]):
+            if self.suunta:
+                self.surf = self.animaatio[0]
+            else:
+                self.surf = pygame.transform.flip(self.animaatio[0], True, False)
+        else:
+            self.animoi(self.suunta)
 
         self.acc.x += self.vel.x * self.FRIC
         self.vel += self.acc
@@ -53,3 +70,28 @@ class player(pygame.sprite.Sprite):
             
         self.rect.midbottom = self.pos
 
+    def animoi(self, suunta):
+        if suunta == True:
+            if self.counter == 0:
+                self.surf = self.animaatio[1]
+            elif self.counter == 6:
+                self.surf = self.animaatio[2]
+            elif self.counter == 12:
+                self.surf = self.animaatio[1]
+            elif self.counter == 18:
+                self.surf = self.animaatio[0]
+            elif self.counter == 24:
+                self.counter = -1
+        else:
+            if self.counter == 0:
+                self.surf = pygame.transform.flip(self.animaatio[1], True, False)
+            elif self.counter == 6:
+                self.surf = pygame.transform.flip(self.animaatio[2], True, False)
+            elif self.counter == 12:
+                self.surf = pygame.transform.flip(self.animaatio[1], True, False)
+            elif self.counter == 18:
+                self.surf = pygame.transform.flip(self.animaatio[0], True, False)
+            elif self.counter == 24:
+                self.counter = -1
+
+        self.counter += 1
