@@ -3,6 +3,7 @@ from pygame.locals import *
 from Valikot.peliValikko import pauseValikko
 from threading import Thread
 from Kentta.ui import ui
+from Hahmot.Player import player
 
 #Luokka 
 class taso:
@@ -16,6 +17,7 @@ class taso:
         self.WIDHT =  widht
         self.HEIGHT = height
         self.PT1 = platform(widht, height)
+        self.PLAYER = player()
         self.UI = ui(self.PT1, self.SCREEN)
         
         t = Thread(target=self.UI.paivitaUI, args=())
@@ -23,7 +25,10 @@ class taso:
         t.start()
 
         self.all_sprites = pygame.sprite.Group()
+        self.alustat = pygame.sprite.Group()
         self.all_sprites.add(self.PT1)
+        self.alustat.add(self.PT1)
+        self.all_sprites.add(self.PLAYER)
         self.FramePerSec = pygame.time.Clock()
 
     #Testi-metodi, joka piirtää punaisen "lattian"
@@ -39,9 +44,7 @@ class taso:
                     pygame.quit()
                     sys.exit()
                 if event.type == pygame.KEYDOWN:    
-                    if event.key == pygame.K_SPACE:
-                        self.PT1.vaihdaVari()
-                    elif event.key == pygame.K_ESCAPE:
+                    if event.key == pygame.K_ESCAPE:
                         pause = pauseValikko(self.SCREEN, self.WIDHT, self.HEIGHT)
                         jatka:bool = pause.valikko()
                         self.SCREEN.fill("black")
@@ -49,7 +52,17 @@ class taso:
                         
                         if not jatka:
                             return
+                        
+                    #elif event.key == pygame.K_SPACE:
+                    #    self.PLAYER.jump(self.alustat)
+
+            tausta = self.SCREEN.fill((0,0,0))
+            #self.all_sprites.add(tausta)
+
+            self.PLAYER.move(self.alustat)
+
             piirto = []
+            piirto.append(tausta)
 
             for entity in self.all_sprites:
                 self.SCREEN.blit(entity.surf, entity.rect)
