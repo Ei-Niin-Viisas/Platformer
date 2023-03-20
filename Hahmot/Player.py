@@ -9,11 +9,13 @@ class player(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
         self.vec = pygame.math.Vector2
-        self.animaatio = [pygame.image.load("pics/mario_1.jpg"),
-            pygame.image.load("pics/mario_2.jpg"), pygame.image.load("pics/mario_3.jpg")]
+        self.animaatio = [pygame.image.load("pics/run_frames/tile000.png"), pygame.image.load("pics/run_frames/tile001.png"), pygame.image.load("pics/run_frames/tile002.png"),
+                          pygame.image.load("pics/run_frames/tile003.png"), pygame.image.load("pics/run_frames/tile004.png"), pygame.image.load("pics/run_frames/tile005.png"),
+                          pygame.image.load("pics/run_frames/tile006.png"), pygame.image.load("pics/run_frames/tile007.png"), pygame.image.load("pics/run_frames/tile008.png"),
+                          pygame.image.load("pics/run_frames/tile009.png"), pygame.image.load("pics/run_frames/tile010.png"), pygame.image.load("pics/run_frames/tile011.png")]
 
 
-        self.surf = pygame.Surface((80, 95))
+        self.surf = pygame.Surface((32, 32))
         self.rect = self.surf.get_rect()
         self.surf.blit(self.animaatio[0], self.rect)
    
@@ -35,7 +37,12 @@ class player(pygame.sprite.Sprite):
         self.acc = self.vec(0,0.5)
     
         pressed_keys = pygame.key.get_pressed()
-        
+
+        if pressed_keys[K_LSHIFT] or pressed_keys[K_RSHIFT]:
+            self.ACC = 0.75
+        else:
+            self.ACC = 0.5
+
         if pressed_keys[K_LEFT] or pressed_keys[K_a]:
             self.acc.x = -self.ACC
             self.suunta = False
@@ -51,17 +58,18 @@ class player(pygame.sprite.Sprite):
                 self.surf = self.animaatio[0]
             else:
                 self.surf = pygame.transform.flip(self.animaatio[0], True, False)
+            self.counter = 0
         else:
             self.animoi(self.suunta)
-
-        self.acc.x += self.vel.x * self.FRIC
-        self.vel += self.acc
-        self.pos += self.vel + 0.5 * self.acc
 
         if self.pos.x > self.WIDTH:
             self.pos.x = 0
         if self.pos.x < 0:
             self.pos.x = self.WIDTH
+        
+        self.acc.x += self.vel.x * self.FRIC
+        self.vel += self.acc
+        self.pos += self.vel + 0.5 * self.acc
 
         if self.vel.y > 0:
             if hits:
@@ -72,26 +80,12 @@ class player(pygame.sprite.Sprite):
 
     def animoi(self, suunta):
         if suunta == True:
-            if self.counter == 0:
-                self.surf = self.animaatio[1]
-            elif self.counter == 6:
-                self.surf = self.animaatio[2]
-            elif self.counter == 12:
-                self.surf = self.animaatio[1]
-            elif self.counter == 18:
-                self.surf = self.animaatio[0]
-            elif self.counter == 24:
-                self.counter = -1
+            if self.counter%5 and self.counter != 0:
+                self.surf = self.animaatio[int((self.counter/5)-1)]
         else:
-            if self.counter == 0:
-                self.surf = pygame.transform.flip(self.animaatio[1], True, False)
-            elif self.counter == 6:
-                self.surf = pygame.transform.flip(self.animaatio[2], True, False)
-            elif self.counter == 12:
-                self.surf = pygame.transform.flip(self.animaatio[1], True, False)
-            elif self.counter == 18:
-                self.surf = pygame.transform.flip(self.animaatio[0], True, False)
-            elif self.counter == 24:
-                self.counter = -1
-
+            if self.counter%5:
+                self.surf = pygame.transform.flip(self.animaatio[int(self.counter/5-1)], True, False)
+        
+        if self.counter == 60:
+                    self.counter = 0
         self.counter += 1
