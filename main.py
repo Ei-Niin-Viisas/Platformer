@@ -31,7 +31,7 @@ def main():
     valikko = paaValikko(WIDHT, HEIGHT)
 
     #Kutsuu kentta-oliota
-    kentta = taso(WIDHT, HEIGHT)
+    kentta = taso()
 
 
     #Game-Active variaabeli

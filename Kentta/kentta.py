@@ -12,11 +12,10 @@ class taso:
     #    pass
 
     #Sandboxin konstruktori
-    def __init__(self, widht, height):
+    def __init__(self):
         self.SCREEN = pygame.display.get_surface()
-        self.WIDHT =  widht
-        self.HEIGHT = height
-        self.PT1 = platform(widht, height)
+        self.WIDTH, self.HEIGHT  = pygame.display.get_window_size()
+        self.PT1 = platform(self.WIDTH, self.HEIGHT)
         self.PLAYER = player()
         self.UI = ui(self.PT1, self.SCREEN)
         
@@ -73,8 +72,6 @@ class taso:
 
             self.FramePerSec.tick(60)
             pygame.display.update(piirto)
-
-
 
 
 #Platform-luokka sandboxia varten

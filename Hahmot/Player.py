@@ -1,4 +1,4 @@
-import pygame
+import pygame, time
 from pygame.locals import *
 
 #Player tiedosto, sisältää tarvittavat tiedot ja variaabelit itse pelaajaa varten
@@ -9,13 +9,18 @@ class player(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
         self.vec = pygame.math.Vector2
-        self.animaatio = [pygame.image.load("pics/run_frames/tile000.png"), pygame.image.load("pics/run_frames/tile001.png"), pygame.image.load("pics/run_frames/tile002.png"),
-                          pygame.image.load("pics/run_frames/tile003.png"), pygame.image.load("pics/run_frames/tile004.png"), pygame.image.load("pics/run_frames/tile005.png"),
-                          pygame.image.load("pics/run_frames/tile006.png"), pygame.image.load("pics/run_frames/tile007.png"), pygame.image.load("pics/run_frames/tile008.png"),
-                          pygame.image.load("pics/run_frames/tile009.png"), pygame.image.load("pics/run_frames/tile010.png"), pygame.image.load("pics/run_frames/tile011.png")]
+        self.animaatio = [  pygame.image.load("pics/run_frames/tile000.png"), pygame.image.load("pics/run_frames/tile001.png"), pygame.image.load("pics/run_frames/tile002.png"),
+                            pygame.image.load("pics/run_frames/tile003.png"), pygame.image.load("pics/run_frames/tile004.png"), pygame.image.load("pics/run_frames/tile005.png"),
+                            pygame.image.load("pics/run_frames/tile006.png"), pygame.image.load("pics/run_frames/tile007.png"), pygame.image.load("pics/run_frames/tile008.png"),
+                            pygame.image.load("pics/run_frames/tile009.png"), pygame.image.load("pics/run_frames/tile010.png"), pygame.image.load("pics/run_frames/tile011.png")]
+        
+        self.paikallaan = [ pygame.image.load("pics/idle_frames/tile000.png"), pygame.image.load("pics/idle_frames/tile001.png"), pygame.image.load("pics/idle_frames/tile002.png"),
+                            pygame.image.load("pics/idle_frames/tile003.png"), pygame.image.load("pics/idle_frames/tile004.png"), pygame.image.load("pics/idle_frames/tile005.png"),
+                            pygame.image.load("pics/idle_frames/tile006.png"), pygame.image.load("pics/idle_frames/tile007.png"), pygame.image.load("pics/idle_frames/tile008.png"),
+                            pygame.image.load("pics/idle_frames/tile009.png"), pygame.image.load("pics/idle_frames/tile010.png")]
 
 
-        self.surf = pygame.Surface((32, 32))
+        self.surf = pygame.Surface((35, 35))
         self.rect = self.surf.get_rect()
         self.surf.blit(self.animaatio[0], self.rect)
    
@@ -39,28 +44,32 @@ class player(pygame.sprite.Sprite):
         pressed_keys = pygame.key.get_pressed()
 
         if pressed_keys[K_LSHIFT] or pressed_keys[K_RSHIFT]:
-            self.ACC = 0.75
+            self.ACC = 1
+            self.counter += 1
         else:
             self.ACC = 0.5
 
-        if pressed_keys[K_LEFT] or pressed_keys[K_a]:
+        if (pressed_keys[K_LEFT] or pressed_keys[K_a]) and (pressed_keys[K_RIGHT] or pressed_keys[K_d]):
+            self.seiso()
+        elif pressed_keys[K_LEFT] or pressed_keys[K_a]:
             self.acc.x = -self.ACC
             self.suunta = False
-        if pressed_keys[K_RIGHT or K_d] or pressed_keys[K_d]:
+            self.animoi()
+        elif pressed_keys[K_RIGHT] or pressed_keys[K_d]:
             self.acc.x = self.ACC
             self.suunta = True
+            self.animoi()
+        else:
+             self.seiso()
+        
         if pressed_keys[K_SPACE]:
             if hits:
                 self.vel.y = -15
 
-        if (not pressed_keys[K_RIGHT] and not pressed_keys[K_d]) and (not pressed_keys[K_LEFT] and not pressed_keys[K_a]):
-            if self.suunta:
-                self.surf = self.animaatio[0]
-            else:
-                self.surf = pygame.transform.flip(self.animaatio[0], True, False)
-            self.counter = 0
-        else:
-            self.animoi(self.suunta)
+        #if (not pressed_keys[K_RIGHT] and not pressed_keys[K_d]) and (not pressed_keys[K_LEFT] and not pressed_keys[K_a]):
+        #    self.seiso()
+        #else:
+        #    self.animoi()
 
         if self.pos.x > self.WIDTH:
             self.pos.x = 0
@@ -78,14 +87,27 @@ class player(pygame.sprite.Sprite):
             
         self.rect.midbottom = self.pos
 
-    def animoi(self, suunta):
-        if suunta == True:
-            if self.counter%5 and self.counter != 0:
+    def animoi(self):
+        if self.suunta == True:
+            if self.counter%5 and (self.counter != 0 or self.counter > 60):
                 self.surf = self.animaatio[int((self.counter/5)-1)]
         else:
-            if self.counter%5:
+            if self.counter%5 and (self.counter != 0 or self.counter < 60):
                 self.surf = pygame.transform.flip(self.animaatio[int(self.counter/5-1)], True, False)
         
-        if self.counter == 60:
+        if self.counter >= 60:
+                    self.counter = 0
+        self.counter += 1
+
+
+    def seiso(self):
+        if self.suunta == True:
+            if self.counter%5 and (self.counter != 0 or self.counter > 60):
+                self.surf = self.paikallaan[int((self.counter/5)-1)]
+        else:
+            if self.counter%5 and (self.counter != 0 or self.counter > 60):
+                self.surf = pygame.transform.flip(self.paikallaan[int(self.counter/5-1)], True, False)
+        
+        if self.counter >= 55:
                     self.counter = 0
         self.counter += 1
