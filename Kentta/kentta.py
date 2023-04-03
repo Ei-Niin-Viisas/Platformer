@@ -3,6 +3,7 @@ from pygame.locals import *
 from Valikot.peliValikko import pauseValikko
 from threading import Thread
 from Kentta.ui import ui
+from Kentta.kolikot import Kolikko
 from Hahmot.Player import player
 
 #Luokka 
@@ -18,6 +19,7 @@ class taso:
         self.PT1 = platform(self.WIDTH, self.HEIGHT)
         self.PLAYER = player()
         self.UI = ui(self.PT1, self.SCREEN)
+        self.kolikko = Kolikko(self.WIDTH, self.HEIGHT)
         
         #t = Thread(target=self.UI.paivitaUI, args=())
         #t.setDaemon(True)
@@ -28,6 +30,7 @@ class taso:
         self.all_sprites.add(self.PT1)
         self.alustat.add(self.PT1)
         self.all_sprites.add(self.PLAYER)
+        self.all_sprites.add(self.kolikko)
         self.FramePerSec = pygame.time.Clock()
 
     #Testi-metodi, joka piirtää punaisen "lattian"
@@ -63,6 +66,8 @@ class taso:
             piirto = []
             piirto.append(tausta)
 
+            if (self.kolikko != None):
+                self.kolikko.collision(self.PLAYER)
 
             for entity in self.all_sprites:
                 self.SCREEN.blit(entity.surf, entity.rect)
@@ -71,7 +76,8 @@ class taso:
             #pygame.sprite.LayeredUpdates.change_layer(self.PT1,1)
 
             self.FramePerSec.tick(60)
-            pygame.display.update(piirto)
+            #pygame.display.update(piirto)
+            pygame.display.flip()
 
 
 #Platform-luokka sandboxia varten

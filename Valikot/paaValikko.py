@@ -11,6 +11,8 @@ class paaValikko:
         self.BG = pygame.image.load("pics/Background.png") 
         pygame.display.set_caption("Menu")
 
+        self.lukko = pygame.time.Clock()
+
     def get_font(self, size):
         return pygame.font.Font("pics/font.ttf", size)
     
@@ -116,7 +118,9 @@ class paaValikko:
                     if QUIT_BUTTON.checkForInput(MENU_MOUSE_POS):
                         pygame.quit()
                         sys.exit()
-                    
+
+            
+            self.lukko.tick(60)  
             pygame.display.update()
         
 
