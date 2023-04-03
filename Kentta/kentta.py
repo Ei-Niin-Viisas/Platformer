@@ -44,7 +44,7 @@ class taso:
                     sys.exit()
                 if event.type == pygame.KEYDOWN:    
                     if event.key == pygame.K_ESCAPE:
-                        pause = pauseValikko(self.SCREEN, self.WIDHT, self.HEIGHT)
+                        pause = pauseValikko(self.SCREEN, self.WIDTH, self.HEIGHT)
                         jatka:bool = pause.valikko()
                         self.SCREEN.fill((0,0,0))
                         pygame.display.flip()

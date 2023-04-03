@@ -13,22 +13,22 @@ def main():
     lista = Setting.arvot()
     FPS = lista[0]
     HEIGHT = lista[1]
-    WIDHT = lista[2]
+    WIDTH = lista[2]
     
     #Asettaa ikkunan keskelle näyttöä
-    x = (1920-WIDHT)/2
+    x = (1920-WIDTH)/2
     y = (1080-HEIGHT)/2
     os.environ['SDL_VIDEO_WINDOW_POS'] = "%d,%d" % (x,y)
     
     #Avaa ikkunan
     pygame.init()
-    SCREEN = pygame.display.set_mode((WIDHT, HEIGHT))
+    SCREEN = pygame.display.set_mode((WIDTH, HEIGHT))
     
     #Luo kello-olion
     FramePerSec = pygame.time.Clock()
     
     #Kutsuu valikko-oliota
-    valikko = paaValikko(WIDHT, HEIGHT)
+    valikko = paaValikko(WIDTH, HEIGHT)
 
     #Kutsuu kentta-oliota
     kentta = taso()
