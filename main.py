@@ -25,7 +25,7 @@ def main():
     SCREEN = pygame.display.set_mode((WIDTH, HEIGHT))
     
     #Luo kello-olion
-    FramePerSec = pygame.time.Clock()
+    FPSlukko = pygame.time.Clock()
     
     #Kutsuu valikko-oliota
     valikko = paaValikko(WIDTH, HEIGHT)
@@ -56,7 +56,7 @@ def main():
             if event.type == pygame.QUIT:
                 running = False
         
-        FramePerSec.tick(FPS)
+        FPSlukko.tick(FPS)
         pygame.display.update()
 
 
