@@ -1,19 +1,22 @@
 import pygame, time
 from pygame.locals import *
 
-#Player tiedosto, sisältää tarvittavat tiedot ja variaabelit itse pelaajaa varten
-
- # 2 for two dimensional
+#Pelaaja-luokka
 
 class player(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
+
+        #2D-vektori, jota käytetään myöhemmin
         self.vec = pygame.math.Vector2
+
+        #Lista, joka sisältää kävelyanimaation kuvat
         self.animaatio = [  pygame.image.load("pics/run_frames/tile000.png"), pygame.image.load("pics/run_frames/tile001.png"), pygame.image.load("pics/run_frames/tile002.png"),
                             pygame.image.load("pics/run_frames/tile003.png"), pygame.image.load("pics/run_frames/tile004.png"), pygame.image.load("pics/run_frames/tile005.png"),
                             pygame.image.load("pics/run_frames/tile006.png"), pygame.image.load("pics/run_frames/tile007.png"), pygame.image.load("pics/run_frames/tile008.png"),
                             pygame.image.load("pics/run_frames/tile009.png"), pygame.image.load("pics/run_frames/tile010.png"), pygame.image.load("pics/run_frames/tile011.png")]
         
+        #Lista, joka sisältää seisomisanimaation kuvat
         self.paikallaan = [ pygame.image.load("pics/idle_frames/tile000.png"), pygame.image.load("pics/idle_frames/tile001.png"), pygame.image.load("pics/idle_frames/tile002.png"),
                             pygame.image.load("pics/idle_frames/tile003.png"), pygame.image.load("pics/idle_frames/tile004.png"), pygame.image.load("pics/idle_frames/tile005.png"),
                             pygame.image.load("pics/idle_frames/tile006.png"), pygame.image.load("pics/idle_frames/tile007.png"), pygame.image.load("pics/idle_frames/tile008.png"),
