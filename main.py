@@ -34,6 +34,7 @@ def main():
     kentta = taso(SCREEN, WIDHT, HEIGHT)
 
 
+
     #Game-Active variaabeli
     running = True
 
@@ -46,6 +47,10 @@ def main():
         #Kutsuu kentan metodia testi, jonka on tarkoitus olla sandbox, 
         #jossa voi kokeilla muita luokkia
         kentta.testi()
+
+        
+
+
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
