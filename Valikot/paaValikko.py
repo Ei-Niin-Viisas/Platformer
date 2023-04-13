@@ -1,5 +1,6 @@
 import sys, pygame
 from Valikot.button import Button
+import pygame_menu
 
 #Luodaan luokka/olio päävalikolle
 class paaValikko:    
@@ -17,15 +18,19 @@ class paaValikko:
     def play(self):
         pygame.display.set_caption("Play")
         palaa:bool = False
-    
+
+
         while True:
             PLAY_MOUSE_POS = pygame.mouse.get_pos()
+
         
             self.SCREEN.fill("black")
             
             PLAY_TEXT = self.get_font(45).render("This is the play screen", True, "white")
             PLAY_RECT = PLAY_TEXT.get_rect(center=(self.WIDTH/2, 260))
             self.SCREEN.blit(PLAY_TEXT, PLAY_RECT) 
+            
+            
             
             PLAY_BACK = Button(image= None, pos = (self.WIDTH/2, 460),
                             text_input = "BACK", font = self.get_font(45), base_color = "White", hovering_color = "Green")
@@ -43,6 +48,9 @@ class paaValikko:
                         palaa = True
                         
             pygame.display.update()
+
+            if PLAY_MOUSE_POS.checkForInput(pygame.mouse.get_pos()):
+                self.ask_level()
 
             if palaa:
                 break  
@@ -118,5 +126,13 @@ class paaValikko:
                         sys.exit()
                     
             pygame.display.update()
+
+    def kentta(self):
+        menu = pygame_menu.Menu("Valitse taso", self.WIDTH, self.HEIGHT, theme=pygame_menu.themes.THEME_BLUE)
+        menu.add_text_input('Level:', default='1', maxchar=2, font_size=50)
+        menu.add_button('Play', self.play)
+        menu.add_button('Back', pygame_menu.events.BACK)
+        menu.mainloop(self.SCREEN)
+        
         
 
