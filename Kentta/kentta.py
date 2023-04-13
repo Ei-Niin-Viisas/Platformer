@@ -13,12 +13,13 @@ class taso:
     #    pass
 
     #Sandboxin konstruktori
-    def __init__(self):
+    def __init__(self, levels):
         self.SCREEN = pygame.display.get_surface()
         self.WIDTH, self.HEIGHT  = pygame.display.get_window_size()
         self.PT1 = platform(self.WIDTH, self.HEIGHT)
         self.PELAAJA = player()
         self.UI = ui(self.PT1, self.SCREEN)
+        self.levels = levels
         
         #t = Thread(target=self.UI.paivitaUI, args=())
         #t.setDaemon(True)
@@ -61,13 +62,14 @@ class taso:
                     #elif event.key == pygame.K_SPACE:
                     #    self.PLAYER.jump(self.alustat)
 
-            tausta = self.SCREEN.fill((0,0,0))
+            #tausta = self.SCREEN.fill((0,0,0))
             #self.all_sprites.add(tausta)
+            self.levels.run()
 
             self.PELAAJA.move(self.alustat)
 
             piirto = []
-            piirto.append(tausta)
+            #piirto.append(tausta)
 
             if (self.all_sprites.__contains__(kolikko)):
                 kolikko.collision(self.PELAAJA)

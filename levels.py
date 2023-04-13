@@ -12,7 +12,7 @@ class Level:
     def __init__(self, level_data, surface):
         # perus setuppi
         self.display_surface = surface
-        self.world_shift = 0
+        self.world_shift = -1
 
         # pleieri
         player_layout = import_csv_layout(level_data['player'])

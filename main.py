@@ -20,34 +20,15 @@ def main():
     lista = Setting.arvot()
     FPS = 60
     HEIGHT = lista[1]
-<<<<<<< HEAD
-    WIDHT = lista[2]
-
-    # Asettaa ikkunan keskelle näyttöä
-    x = (1920-WIDHT)/2
-=======
     WIDTH = lista[2]
     
     #Asettaa ikkunan keskelle näyttöä
     x = (1920-WIDTH)/2
->>>>>>> Juuso
     y = (1080-HEIGHT)/2
     os.environ['SDL_VIDEO_WINDOW_POS'] = "%d,%d" % (x, y)
 
     # Avaa ikkunan
     pygame.init()
-<<<<<<< HEAD
-    SCREEN = pygame.display.set_mode((WIDHT, HEIGHT))
-    levels = Level(level_0, SCREEN)
-    # Luo kello-olion
-    FramePerSec = pygame.time.Clock()
-
-    # Kutsuu valikko-oliota
-    valikko = paaValikko(WIDHT, HEIGHT)
-
-    # Kutsuu kentta-oliota
-    kentta = taso(WIDHT, HEIGHT)
-=======
     SCREEN = pygame.display.set_mode((WIDTH, HEIGHT))
     
     #Luo kello-olion
@@ -57,9 +38,10 @@ def main():
     valikko = paaValikko(WIDTH, HEIGHT)
 
     #Kutsuu kentta-oliota
-    kentta = taso()
->>>>>>> Juuso
-
+    
+    levels = Level(level_0, SCREEN)
+    kentta = taso(levels)
+    
     # Game-Active variaabeli
     running = True
 
@@ -71,24 +53,19 @@ def main():
     while running:
         # Check For Quit
         # Siirtyy päävalikkoon
-        # valikko.main_menu()
+        valikko.main_menu()
 
         # Kutsuu kentan metodia testi, jonka on tarkoitus olla sandbox,
         # jossa voi kokeilla muita luokkia
-        # kentta.testi()
-        levels.run()
+        kentta.testi()
+        
 
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
-<<<<<<< HEAD
-
-        FramePerSec.tick(FPS)
-=======
         
         FPSlukko.tick(FPS)
->>>>>>> Juuso
         pygame.display.update()
 
 
