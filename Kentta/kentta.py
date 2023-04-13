@@ -1,6 +1,6 @@
 import pygame, sys, time
 from pygame.locals import *
-from Valikot.peliValikko import pauseValikko
+#from Valikot.peliValikko import pauseValikko
 from threading import Thread
 from Kentta.ui import ui
 
@@ -41,14 +41,14 @@ class taso:
                 if event.type == pygame.KEYDOWN:    
                     if event.key == pygame.K_SPACE:
                         self.PT1.vaihdaVari()
-                    elif event.key == pygame.K_ESCAPE:
-                        pause = pauseValikko(self.SCREEN, self.WIDHT, self.HEIGHT)
-                        jatka:bool = pause.valikko()
+                    #elif event.key == pygame.K_ESCAPE:
+                    #    pause = pauseValikko(self.SCREEN, self.WIDHT, self.HEIGHT)
+                    #    jatka:bool = pause.valikko()
                         self.SCREEN.fill("black")
                         pygame.display.flip()
                         
-                        if not jatka:
-                            return
+                    #    if not jatka:
+                    #        return
             piirto = []
 
             for entity in self.all_sprites:

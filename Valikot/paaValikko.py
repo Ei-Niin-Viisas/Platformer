@@ -5,8 +5,8 @@ from Valikot.button import Button
 #Luodaan luokka/olio päävalikolle
 class paaValikko:    
     #olion konstruktori
-    def __init__(self, screen, width, height):
-        self.SCREEN = screen
+    def __init__(self, width, height):
+        self.SCREEN = pygame.display.get_surface()
         self.WIDTH = width
         self.HEIGHT = height
         self.BG = pygame.image.load("pics/Background.png") 
