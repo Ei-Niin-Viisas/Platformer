@@ -12,7 +12,6 @@ def main():
     # Hakee näytön resoluution asetukset-oliosta
     Setting = asetukset(1)
     lista = Setting.arvot()
-    FPS = 60
     HEIGHT = lista[1]
     WIDTH = lista[2]
     

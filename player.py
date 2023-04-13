@@ -130,5 +130,3 @@ class Player(pygame.sprite.Sprite):
         self.animate()
         self.run_dust_animation()
 
-    def tapa(self):
-        return True

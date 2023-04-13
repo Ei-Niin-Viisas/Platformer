@@ -13,8 +13,7 @@ class Level:
         # perus setuppi
         self.display_surface = surface
         self.world_shift = -2
-
-
+        self.pistelaskuri = 0
 
         # pleieri
         player_layout = import_csv_layout(level_data['player'])
@@ -196,11 +195,22 @@ class Level:
         player = self.player.sprite
 
     def osumat(self):
+        #Vihu tappaa pelaajan
         for vihu in self.enemy_sprites:
             if pygame.sprite.collide_rect(self.player.sprite, vihu):
-                return self.player.sprite.tapa()
-            #print("Toimii")
+                return True
+            
+        #Pelaaja kerää kolikon
+        for kolikko in self.coin_sprites:
+            if pygame.sprite.collide_rect(self.player.sprite, kolikko):
+                kolikko.kill()
+                self.pistelaskuri += 1
+                print(self.pistelaskuri)
 
+        #Pelaaja tippuu rotkoon ja kuolee
+        if self.player.sprite.rect.top > pygame.display.get_window_size()[1]:
+            return True
+    
     def run(self):
         # run the entire game/level
 

@@ -51,6 +51,11 @@ class Coin(AnimatedTile):
         center_y = y + int(size / 2)
         self.rect = self.image.get_rect(center=(center_x, center_y))
 
+    def collision(self, player):
+        if pygame.sprite.collide_rect(self, player):
+            self.kill()
+            #player.score += 10
+
 
 class Palm(AnimatedTile):
     def __init__(self, size, x, y, path, offset):
