@@ -1,7 +1,5 @@
 import pygame
 import os
-import sys
-import time
 from Valikot.paaValikko import paaValikko
 from Kentta.kentta import *
 from asetukset import *
@@ -9,11 +7,9 @@ from asetukset import asetukset
 from threading import Thread
 
 # main-funktio
-# sisältää vain turhaa testikoodia
-
 
 def main():
-    # Hakee fps:n ja näytön resoluution asetukset-oliosta
+    # Hakee näytön resoluution asetukset-oliosta
     Setting = asetukset(1)
     lista = Setting.arvot()
     FPS = 60
