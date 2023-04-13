@@ -12,7 +12,7 @@ class Level:
     def __init__(self, level_data, surface):
         # perus setuppi
         self.display_surface = surface
-        self.world_shift = -1
+        self.world_shift = -2
 
 
 
@@ -244,7 +244,6 @@ class Level:
         self.vertical_movement_collision()
         osuttu:bool = self.osumat()
         if osuttu:
-            print("ses")
             return True
             
         self.player.draw(self.display_surface)
