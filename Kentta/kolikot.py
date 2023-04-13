@@ -5,17 +5,20 @@ import random
 
 
 class Kolikko(pygame.sprite.Sprite):
-    def __init__(self, width, height):
+    def __init__(self, x, y):
         super().__init__()
+
         self.image = pygame.image.load("pics/coin.png")
-        self.rect = self.image.get_rect()
-        self.rect.x = platform(width(200))
-        self.rect.y = platform(height(150))
+        self.surf = pygame.Surface((self.image.get_size()))
+        self.surf = self.image
+        self.rect = self.surf.get_rect()
+        
+        self.rect.center = (x,y)
         
 
-    """def collision(self, player):
+    def collision(self, player):
         if pygame.sprite.collide_rect(self, player):
             self.kill()
-            player.score += 10"""
+            #player.score += 10
 
 
