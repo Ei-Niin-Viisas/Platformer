@@ -3,6 +3,8 @@ from pygame.locals import *
 from Valikot.peliValikko import pauseValikko
 from threading import Thread
 from Kentta.ui import ui
+from Kentta.kolikot import Kolikko
+from Hahmot.Player import player
 
 #Luokka 
 class taso:
@@ -11,26 +13,34 @@ class taso:
     #    pass
 
     #Sandboxin konstruktori
-    def __init__(self, widht, height):
+    def __init__(self):
         self.SCREEN = pygame.display.get_surface()
-        self.WIDHT =  widht
-        self.HEIGHT = height
-        self.PT1 = platform(widht, height)
+        self.WIDTH, self.HEIGHT  = pygame.display.get_window_size()
+        self.PT1 = platform(self.WIDTH, self.HEIGHT)
+        self.PELAAJA = player()
         self.UI = ui(self.PT1, self.SCREEN)
         
-        t = Thread(target=self.UI.paivitaUI, args=())
-        t.setDaemon(True)
-        t.start()
+        #t = Thread(target=self.UI.paivitaUI, args=())
+        #t.setDaemon(True)
+        #t.start()
 
         self.all_sprites = pygame.sprite.Group()
+        self.alustat = pygame.sprite.Group()
+        
         self.all_sprites.add(self.PT1)
-        self.FramePerSec = pygame.time.Clock()
+        self.alustat.add(self.PT1)
+        self.all_sprites.add(self.PELAAJA)
+
+        self.FPSlukko = pygame.time.Clock()
 
     #Testi-metodi, joka piirtää punaisen "lattian"
     def testi(self):
         pygame.display.set_caption("Peli")
-        self.SCREEN.fill((0,0,0))
+        #self.SCREEN.fill((0,0,0))
         pygame.display.flip()
+
+        kolikko = Kolikko(200, 500)
+        self.all_sprites.add(kolikko)
 
         while True:
  
@@ -39,17 +49,28 @@ class taso:
                     pygame.quit()
                     sys.exit()
                 if event.type == pygame.KEYDOWN:    
-                    if event.key == pygame.K_SPACE:
-                        self.PT1.vaihdaVari()
-                    elif event.key == pygame.K_ESCAPE:
-                        pause = pauseValikko(self.SCREEN, self.WIDHT, self.HEIGHT)
+                    if event.key == pygame.K_ESCAPE:
+                        pause = pauseValikko(self.SCREEN, self.WIDTH, self.HEIGHT)
                         jatka:bool = pause.valikko()
-                        self.SCREEN.fill("black")
+                        self.SCREEN.fill((0,0,0))
                         pygame.display.flip()
                         
                         if not jatka:
                             return
+                        
+                    #elif event.key == pygame.K_SPACE:
+                    #    self.PLAYER.jump(self.alustat)
+
+            tausta = self.SCREEN.fill((0,0,0))
+            #self.all_sprites.add(tausta)
+
+            self.PELAAJA.move(self.alustat)
+
             piirto = []
+            piirto.append(tausta)
+
+            if (self.all_sprites.__contains__(kolikko)):
+                kolikko.collision(self.PELAAJA)
 
             for entity in self.all_sprites:
                 self.SCREEN.blit(entity.surf, entity.rect)
@@ -57,9 +78,9 @@ class taso:
             
             #pygame.sprite.LayeredUpdates.change_layer(self.PT1,1)
 
-            self.FramePerSec.tick(60)
-            pygame.display.update(piirto)
-
+            self.FPSlukko.tick(60)
+            #pygame.display.update(piirto)
+            pygame.display.flip()
 
 
 #Platform-luokka sandboxia varten
@@ -81,4 +102,5 @@ class platform(pygame.sprite.Sprite):
             self.counter += 1
 
     def naytaLaskuri(self):
-        print(self.counter)
+        #print(self.counter)
+        pass

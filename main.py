@@ -20,15 +20,23 @@ def main():
     lista = Setting.arvot()
     FPS = 60
     HEIGHT = lista[1]
+<<<<<<< HEAD
     WIDHT = lista[2]
 
     # Asettaa ikkunan keskelle näyttöä
     x = (1920-WIDHT)/2
+=======
+    WIDTH = lista[2]
+    
+    #Asettaa ikkunan keskelle näyttöä
+    x = (1920-WIDTH)/2
+>>>>>>> Juuso
     y = (1080-HEIGHT)/2
     os.environ['SDL_VIDEO_WINDOW_POS'] = "%d,%d" % (x, y)
 
     # Avaa ikkunan
     pygame.init()
+<<<<<<< HEAD
     SCREEN = pygame.display.set_mode((WIDHT, HEIGHT))
     levels = Level(level_0, SCREEN)
     # Luo kello-olion
@@ -39,9 +47,25 @@ def main():
 
     # Kutsuu kentta-oliota
     kentta = taso(WIDHT, HEIGHT)
+=======
+    SCREEN = pygame.display.set_mode((WIDTH, HEIGHT))
+    
+    #Luo kello-olion
+    FPSlukko = pygame.time.Clock()
+    
+    #Kutsuu valikko-oliota
+    valikko = paaValikko(WIDTH, HEIGHT)
+
+    #Kutsuu kentta-oliota
+    kentta = taso()
+>>>>>>> Juuso
 
     # Game-Active variaabeli
     running = True
+
+    #pygame.mixer.init()
+    #pygame.mixer.music.load("music/BTD6.mp3", "mp3")
+    #pygame.mixer.music.play()
 
     # Gameloop
     while running:
@@ -54,11 +78,17 @@ def main():
         # kentta.testi()
         levels.run()
 
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+<<<<<<< HEAD
 
         FramePerSec.tick(FPS)
+=======
+        
+        FPSlukko.tick(FPS)
+>>>>>>> Juuso
         pygame.display.update()
 
 
