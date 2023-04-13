@@ -23,22 +23,26 @@ class Player(pygame.sprite.Sprite):
         self.surf = pygame.Surface((30, 30))
         self.surf.fill((128,255,40))
         self.rect = self.surf.get_rect()
-   
-        self.pos = vec((10, 200))
-        self.vel = vec(0,0)
-        self.acc = vec(0,0)
+        self.vec = pygame.math.Vector2
+
+        self.pos = self.vec((10, 200))
+        self.vel = self.vec(0,0)
+        self.acc = self.vec(0,0)
+
+        self.ACC = 0.5
+        self.FRIC = -0.12
 
     def move(self):
-        self.acc = vec(0,0.5)
+        self.acc = self.vec(0,0.5)
     
         pressed_keys = pygame.key.get_pressed()
         
         if pressed_keys[K_LEFT]:
-            self.acc.x = -ACC
+            self.acc.x = -self.ACC
         if pressed_keys[K_RIGHT]:
-            self.acc.x = ACC
+            self.acc.x = self.ACC
 
-        self.acc.x += self.vel.x * FRIC
+        self.acc.x += self.vel.x * self.FRIC
         self.vel += self.acc
         self.pos += self.vel + 0.5 * self.acc
 
@@ -93,12 +97,15 @@ while True:
             if event.key == pygame.K_SPACE:
                 P1.jump()
      
-    displaysurface.fill((0,0,0))
+    jotain = displaysurface.fill((0,0,0))
  
+    testi = []
+    testi.append(jotain)
     for entity in all_sprites:
         displaysurface.blit(entity.surf, entity.rect)
+        testi.append(entity.rect)
  
-    pygame.display.update()
+    pygame.display.update(testi)
     FramePerSec.tick(FPS)
     P1.move()
     P1.update()
