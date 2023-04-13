@@ -195,6 +195,12 @@ class Level:
     def scroll_x(self):
         player = self.player.sprite
 
+    def osumat(self):
+        for vihu in self.enemy_sprites:
+            if pygame.sprite.collide_rect(self.player.sprite, vihu):
+                return self.player.sprite.tapa()
+            #print("Toimii")
+
     def run(self):
         # run the entire game/level
 
@@ -236,6 +242,11 @@ class Level:
         self.player.update()
         self.horizontal_movement_collision()
         self.vertical_movement_collision()
+        osuttu:bool = self.osumat()
+        if osuttu:
+            print("ses")
+            return True
+            
         self.player.draw(self.display_surface)
         self.goal.update(self.world_shift)
         self.goal.draw(self.display_surface)

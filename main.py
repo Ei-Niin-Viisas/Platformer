@@ -7,8 +7,6 @@ from Kentta.kentta import *
 from asetukset import *
 from asetukset import asetukset
 from threading import Thread
-from game_data import level_0
-from levels import Level
 
 # main-funktio
 # sisältää vain turhaa testikoodia
@@ -39,8 +37,7 @@ def main():
 
     #Kutsuu kentta-oliota
     
-    levels = Level(level_0, SCREEN)
-    kentta = taso(levels)
+    kentta = taso()
     
     # Game-Active variaabeli
     running = True
@@ -55,18 +52,15 @@ def main():
         # Siirtyy päävalikkoon
         valikko.main_menu()
 
+
         # Kutsuu kentan metodia testi, jonka on tarkoitus olla sandbox,
         # jossa voi kokeilla muita luokkia
         kentta.testi()
-        
-
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
         
-        FPSlukko.tick(FPS)
-        pygame.display.update()
 
 
 # Kutsutaan main-funktiota

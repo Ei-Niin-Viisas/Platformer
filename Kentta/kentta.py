@@ -5,6 +5,8 @@ from threading import Thread
 from Kentta.ui import ui
 from Kentta.kolikot import Kolikko
 from Hahmot.Player import player
+from levels import Level
+from game_data import level_0
 
 #Luokka 
 class taso:
@@ -13,13 +15,13 @@ class taso:
     #    pass
 
     #Sandboxin konstruktori
-    def __init__(self, levels):
+    def __init__(self):
         self.SCREEN = pygame.display.get_surface()
         self.WIDTH, self.HEIGHT  = pygame.display.get_window_size()
         self.PT1 = platform(self.WIDTH, self.HEIGHT)
         self.PELAAJA = player()
         self.UI = ui(self.PT1, self.SCREEN)
-        self.levels = levels
+        self.levels = Level(level_0, self.SCREEN)
         
         #t = Thread(target=self.UI.paivitaUI, args=())
         #t.setDaemon(True)
@@ -35,7 +37,7 @@ class taso:
         self.FPSlukko = pygame.time.Clock()
 
     #Testi-metodi, joka piirtää punaisen "lattian"
-    def testi(self):
+    def testi(self, ):
         pygame.display.set_caption("Peli")
         #self.SCREEN.fill((0,0,0))
         pygame.display.flip()
@@ -57,6 +59,7 @@ class taso:
                         pygame.display.flip()
                         
                         if not jatka:
+                            self.levels = Level(level_0, self.SCREEN)
                             return
                         
                     #elif event.key == pygame.K_SPACE:
@@ -64,7 +67,22 @@ class taso:
 
             #tausta = self.SCREEN.fill((0,0,0))
             #self.all_sprites.add(tausta)
-            self.levels.run()
+            osuttu:bool = self.levels.run()
+            if osuttu:
+                self.levels = Level(level_0, self.SCREEN)
+                self.SCREEN.fill((0,0,0))
+
+
+                smallfont = pygame.font.SysFont('Corbel',70) 
+        
+        
+                text1 = smallfont.render('Kualit homo!!!' , True , "red")
+                self.SCREEN.blit(text1, (self.WIDTH/3, self.HEIGHT/2))
+                pygame.display.flip()
+                time.sleep(5)
+                return
+            
+            #print(osuttu)
 
             self.PELAAJA.move(self.alustat)
 

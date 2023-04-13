@@ -11,10 +11,12 @@ class Enemy(AnimatedTile):
 
     def move(self):
         self.rect.x += self.speed
+        
     #spriten kääntö
     def reverse_image(self):
         if self.speed > 0:
             self.image = pygame.transform.flip(self.image, True, False)
+
     #vihujen suunnan muutto
     def reverse(self):
         self.speed *= -1
