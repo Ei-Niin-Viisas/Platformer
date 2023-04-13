@@ -12,11 +12,9 @@ class Level:
     def __init__(self, level_data, surface):
         # perus setuppi
         self.display_surface = surface
-<<<<<<< HEAD
         self.world_shift = -1
-=======
-        self.world_shift = -3
->>>>>>> Elmer
+
+
 
         # pleieri
         player_layout = import_csv_layout(level_data['player'])
@@ -24,12 +22,9 @@ class Level:
         self.goal = pygame.sprite.GroupSingle()
         self.player_setup(player_layout)
 
-<<<<<<< HEAD
-=======
         # dust
         self.dust_sprite = pygame.sprite.GroupSingle()
 
->>>>>>> Elmer
         # terrain setuppi
         terrain_layout = import_csv_layout(level_data['terrain'])
         self.terrain_sprites = self.create_tile_group(
@@ -159,15 +154,9 @@ class Level:
     def horizontal_movement_collision(self):
         player = self.player.sprite
         player.rect.x += player.direction.x * player.speed
-<<<<<<< HEAD
-        collide_sprites = self.terrain_sprites.sprites() + self.crate_sprites.sprites() + \
-            self.fg_palm_sprites.sprites()
-        for sprite in collide_sprites():
-=======
         # collide_sprites = self.terrain_sprites.sprites() + self.crate_sprites.sprites() + \
         #    self.fg_palm_sprites.sprites()
         for sprite in self.terrain_sprites.sprites() + self.crate_sprites.sprites() + self.fg_palm_sprites.sprites():
->>>>>>> Elmer
             if sprite.rect.colliderect(player.rect):
                 if player.direction.x < 0:
                     player.rect.left = sprite.rect.right
@@ -185,15 +174,9 @@ class Level:
     def vertical_movement_collision(self):
         player = self.player.sprite
         player.apply_gravity()
-<<<<<<< HEAD
-        collide_sprites = self.terrain_sprites.sprites() + self.crate_sprites.sprites() + \
-            self.fg_palm_sprites.sprites()
-        for sprite in collide_sprites():
-=======
         # collide_sprites = self.terrain_sprites.sprites() + self.crate_sprites.sprites() + \
         #    self.fg_palm_sprites.sprites()
         for sprite in self.terrain_sprites.sprites() + self.crate_sprites.sprites() + self.fg_palm_sprites.sprites():
->>>>>>> Elmer
             if sprite.rect.colliderect(player.rect):
                 if player.direction.y > 0:
                     player.rect.bottom = sprite.rect.top
@@ -203,22 +186,15 @@ class Level:
                     player.rect.top = sprite.rect.bottom
                     player.direction.y = 0
                     player.on_ceiling = True
-<<<<<<< HEAD
-        if player.on_ground and player.direction.y < o or player.direction.y > 1:
-=======
         if player.on_ground and player.direction.y < 0 or player.direction.y > 1:
->>>>>>> Elmer
             player.on_ground = False
         if player.on_ceiling and player.direction.y > 0.1:
             player.on_ceiling = False
 
-<<<<<<< HEAD
-=======
     # ruudun liikutus pelaajan mukaan
     def scroll_x(self):
         player = self.player.sprite
 
->>>>>>> Elmer
     def run(self):
         # run the entire game/level
 
@@ -258,13 +234,8 @@ class Level:
 
         # pelaaja spraitit
         self.player.update()
-<<<<<<< HEAD
-        # self.horizontal_movement_collision()
-        # self.vertical_movement_collision()
-=======
         self.horizontal_movement_collision()
         self.vertical_movement_collision()
->>>>>>> Elmer
         self.player.draw(self.display_surface)
         self.goal.update(self.world_shift)
         self.goal.draw(self.display_surface)
