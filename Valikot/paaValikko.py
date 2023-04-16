@@ -1,16 +1,17 @@
-import pygame, sys
+import sys, pygame
 from Valikot.button import Button
-
 
 #Luodaan luokka/olio päävalikolle
 class paaValikko:    
     #olion konstruktori
-    def __init__(self, screen, width, height):
-        self.SCREEN = screen
+    def __init__(self, width, height):
+        self.SCREEN = pygame.display.get_surface()
         self.WIDTH = width
         self.HEIGHT = height
         self.BG = pygame.image.load("pics/Background.png") 
         pygame.display.set_caption("Menu")
+
+        self.lukko = pygame.time.Clock()
 
     def get_font(self, size):
         return pygame.font.Font("pics/font.ttf", size)
@@ -81,24 +82,29 @@ class paaValikko:
                 break
 
     def main_menu(self):
+
         pygame.display.set_caption("Menu")
         
+        #pygame.mixer.init()
+        #menu_musa = pygame.mixer.Sound("music/menu_awesomeness.wav")
+        #menu_musa.play()
+
+        MENU_TEXT = self.get_font(100).render("MAIN MENU", True, "#b68f40")
+        MENU_RECT = MENU_TEXT.get_rect(center=(self.WIDTH/2, self.HEIGHT/2-250))
+        
+        PLAY_BUTTON = Button(image=pygame.image.load("pics/Play Rect.png"), pos=(self.WIDTH/2, self.HEIGHT/2-100),
+                            text_input = "PLAY", font = self.get_font(75), base_color="#d7fcd4", hovering_color="White")
+        OPTIONS_BUTTON = Button(image = pygame.image.load("pics/Options Rect.png"), pos=(self.WIDTH/2, self.HEIGHT/2+100),
+                            text_input = "OPTIONS", font = self.get_font(75), base_color="#d7fcd4", hovering_color = "White")
+        QUIT_BUTTON = Button(image=pygame.image.load("pics/Quit Rect.png"), pos=(self.WIDTH/2, self.HEIGHT/2+250),
+                            text_input="QUIT", font = self.get_font(75), base_color="#d7fcd4", hovering_color= "White")
+        
         while True:
+
             self.SCREEN.blit(self.BG, (0 , 0))
+            self.SCREEN.blit(MENU_TEXT,MENU_RECT)
             
             MENU_MOUSE_POS = pygame.mouse.get_pos()
-            
-            MENU_TEXT = self.get_font(100).render("MAIN MENU", True, "#b68f40")
-            MENU_RECT = MENU_TEXT.get_rect(center=(self.WIDTH/2, self.HEIGHT/2-250))
-            
-            PLAY_BUTTON = Button(image=pygame.image.load("pics/Play Rect.png"), pos=(self.WIDTH/2, self.HEIGHT/2-100),
-                                text_input = "PLAY", font = self.get_font(75), base_color="#d7fcd4", hovering_color="White")
-            OPTIONS_BUTTON = Button(image = pygame.image.load("pics/Options Rect.png"), pos=(self.WIDTH/2, self.HEIGHT/2+100),
-                                    text_input = "OPTIONS", font = self.get_font(75), base_color="#d7fcd4", hovering_color = "White")
-            QUIT_BUTTON = Button(image=pygame.image.load("pics/Quit Rect.png"), pos=(self.WIDTH/2, self.HEIGHT/2+250),
-                                text_input="QUIT", font = self.get_font(75), base_color="#d7fcd4", hovering_color= "White")
-            
-            self.SCREEN.blit(MENU_TEXT,MENU_RECT)
             
             for button in [PLAY_BUTTON, OPTIONS_BUTTON, QUIT_BUTTON]:
                 button.changeColor(MENU_MOUSE_POS)
@@ -111,13 +117,16 @@ class paaValikko:
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if PLAY_BUTTON.checkForInput(MENU_MOUSE_POS):
                         #self.play()
+                        #pygame.mixer.stop()
                         return
                     if OPTIONS_BUTTON.checkForInput(MENU_MOUSE_POS):
                         self.options()
                     if QUIT_BUTTON.checkForInput(MENU_MOUSE_POS):
                         pygame.quit()
                         sys.exit()
-                    
+
+            
+            self.lukko.tick(60)  
             pygame.display.update()
         
 
