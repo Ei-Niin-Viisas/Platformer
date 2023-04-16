@@ -29,17 +29,14 @@ def main():
     
     
     #Kutsuu valikko-oliota
-<<<<<<< HEAD
-    valikko = paaValikko(SCREEN, WIDHT, HEIGHT)
-    valikko.main_menu()
-    #Game-Active variaabeli
-    pygame.display.set_caption("Peli")
-    SCREEN.blit(bg, (0, 0))
-=======
+    # valikko = paaValikko(SCREEN, WIDHT, HEIGHT)
+    # valikko.main_menu()
+    # #Game-Active variaabeli
+    # pygame.display.set_caption("Peli")
+    # SCREEN.blit(bg, (0, 0))
     valikko = paaValikko(WIDTH, HEIGHT)
 
     #Kutsuu kentta-oliota
->>>>>>> Juuso
     
     kentta = taso()
     
