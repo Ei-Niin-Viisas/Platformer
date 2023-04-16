@@ -117,6 +117,8 @@ class paaValikko:
                     sys.exit()
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if PLAY_BUTTON.checkForInput(MENU_MOUSE_POS):
+                        chosen_level = self.choose_level()
+                        self.play(chosen_level)                     
                         #self.play()
                         return
                     if OPTIONS_BUTTON.checkForInput(MENU_MOUSE_POS):
@@ -127,12 +129,32 @@ class paaValikko:
                     
             pygame.display.update()
 
-    def kentta(self):
-        menu = pygame_menu.Menu("Valitse taso", self.WIDTH, self.HEIGHT, theme=pygame_menu.themes.THEME_BLUE)
-        menu.add_text_input('Level:', default='1', maxchar=2, font_size=50)
-        menu.add_button('Play', self.play)
-        menu.add_button('Back', pygame_menu.events.BACK)
-        menu.mainloop(self.SCREEN)
+
+    def choose_level(self):
+        level_list = []
         
+        selected_level = None
+        while selected_level is None:
+            for i, level in enumerate(level_list):
+                level_name, level_path = level
+                level_text = self.get_font(45).render(f"{i+1}. {level_name}", True, "white")
+                level_rect = level_text.get_rect(center=(self.WIDTH/2, 260 + i*100))
+                self.SCREEN.blit(level_text, level_rect)
+            
+                level_button = Button(image=None, pos=(self.WIDTH/2, 360 + i*100),
+                    text_input="SELECT", font=self.get_font(45), base_color="White", hovering_color="Green")
+                level_button.changeColor(pygame.mouse.get_pos())
+                level_button.update(self.SCREEN)
+            
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        pygame.quit()
+                        sys.exit()
+                    if event.type == pygame.MOUSEBUTTONDOWN:
+                        if level_button.checkForInput(pygame.mouse.get_pos()):
+                            selected_level = level_path
         
+        pygame.display.update()
+        
+        return selected_level
 
