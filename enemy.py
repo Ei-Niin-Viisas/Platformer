@@ -1,6 +1,7 @@
 import pygame
 from tiles import AnimatedTile
 from random import randint
+from player import Player
 
 
 class Enemy(AnimatedTile):
@@ -11,7 +12,7 @@ class Enemy(AnimatedTile):
 
     def move(self):
         self.rect.x += self.speed
-        
+
     #spriten kääntö
     def reverse_image(self):
         if self.speed > 0:
@@ -26,3 +27,5 @@ class Enemy(AnimatedTile):
         self.animate()
         self.move()
         self.reverse_image()
+
+
