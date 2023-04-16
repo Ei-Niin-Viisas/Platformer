@@ -4,7 +4,7 @@ from Valikot.peliValikko import pauseValikko
 from threading import Thread
 from Kentta.ui import ui
 from Kentta.kolikot import Kolikko
-from Hahmot.Player import player
+from Hahmot.Player_vanha import player
 from levels import Level
 from game_data import *
 #Luokka 
@@ -17,21 +17,14 @@ class taso:
     def __init__(self):
         self.SCREEN = pygame.display.get_surface()
         self.WIDTH, self.HEIGHT  = pygame.display.get_window_size()
-        self.PT1 = platform(self.WIDTH, self.HEIGHT)
-        self.PELAAJA = player()
-        self.UI = ui(self.PT1, self.SCREEN)
+
+
+        #self.UI = ui(self.PT1, self.SCREEN)
         self.levels = None
         
         #t = Thread(target=self.UI.paivitaUI, args=())
         #t.setDaemon(True)
         #t.start()
-
-        self.all_sprites = pygame.sprite.Group()
-        self.alustat = pygame.sprite.Group()
-        
-        self.all_sprites.add(self.PT1)
-        self.alustat.add(self.PT1)
-        self.all_sprites.add(self.PELAAJA)
 
         self.FPSlukko = pygame.time.Clock()
 
@@ -40,8 +33,8 @@ class taso:
         pygame.display.set_caption("Peli")
         pygame.display.flip()
 
-        kolikko = Kolikko(200, 500)
-        self.all_sprites.add(kolikko)
+        #kolikko = Kolikko(200, 500)
+        #self.all_sprites.add(kolikko)
         self.levels = Level(level_0, self.SCREEN)
 
         while True:
@@ -79,7 +72,7 @@ class taso:
                 time.sleep(2)
                 return
             
-
+            """
             self.PELAAJA.move(self.alustat)
 
             piirto = []
@@ -93,7 +86,7 @@ class taso:
                 piirto.append(entity.rect)
             
             #pygame.sprite.LayeredUpdates.change_layer(self.PT1,1)
-
+            """
             self.FPSlukko.tick(60)
             #pygame.display.update(piirto)
             pygame.display.flip()
