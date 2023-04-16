@@ -85,9 +85,9 @@ class paaValikko:
 
         pygame.display.set_caption("Menu")
         
-        pygame.mixer.init()
-        menu_musa = pygame.mixer.Sound("music/menu_awesomeness.wav")
-        menu_musa.play()
+        #pygame.mixer.init()
+        #menu_musa = pygame.mixer.Sound("music/menu_awesomeness.wav")
+        #menu_musa.play()
 
         MENU_TEXT = self.get_font(100).render("MAIN MENU", True, "#b68f40")
         MENU_RECT = MENU_TEXT.get_rect(center=(self.WIDTH/2, self.HEIGHT/2-250))
@@ -117,7 +117,7 @@ class paaValikko:
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if PLAY_BUTTON.checkForInput(MENU_MOUSE_POS):
                         #self.play()
-                        pygame.mixer.stop()
+                        #pygame.mixer.stop()
                         return
                     if OPTIONS_BUTTON.checkForInput(MENU_MOUSE_POS):
                         self.options()

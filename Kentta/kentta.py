@@ -53,17 +53,12 @@ class taso:
                         if not jatka:
                             return
                         
-                    #elif event.key == pygame.K_SPACE:
-                    #    self.PLAYER.jump(self.alustat)
-
-            #tausta = self.SCREEN.fill((0,0,0))
-            #self.all_sprites.add(tausta)
 
             #Jos pelaajaan on kentässä osuttu, muuttuja saa arvon True
-            osuttu:bool = self.levels.run()
+            osuttu:int = self.levels.run()
 
             #If-lause, joka näyttää kuolemaruudun ja heittää pelaajan päävalikkoon
-            if osuttu:
+            if osuttu == 1:
                 self.SCREEN.fill((0,0,0))
                 smallfont = pygame.font.SysFont('Corbel',70) 
                 text1 = smallfont.render('Kualit homo!!!' , True , "red")
@@ -71,24 +66,17 @@ class taso:
                 pygame.display.flip()
                 time.sleep(2)
                 return
+            elif osuttu == 2:
+                self.SCREEN.fill("white")
+                smallfont = pygame.font.SysFont('Corbel',70) 
+                text1 = smallfont.render('Voitit kentän!!!' , True , "blue")
+                self.SCREEN.blit(text1, (self.WIDTH/3, self.HEIGHT/2))
+                pygame.display.flip()
+                time.sleep(2)
+                return
+
             
-            """
-            self.PELAAJA.move(self.alustat)
-
-            piirto = []
-            #piirto.append(tausta)
-
-            if (self.all_sprites.__contains__(kolikko)):
-                kolikko.collision(self.PELAAJA)
-
-            for entity in self.all_sprites:
-                self.SCREEN.blit(entity.surf, entity.rect)
-                piirto.append(entity.rect)
-            
-            #pygame.sprite.LayeredUpdates.change_layer(self.PT1,1)
-            """
             self.FPSlukko.tick(60)
-            #pygame.display.update(piirto)
             pygame.display.flip()
 
 

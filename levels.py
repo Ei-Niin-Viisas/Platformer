@@ -150,66 +150,39 @@ class Level:
         jump_particle_sprite = ParticleEffect(pos, 'jump')
         self.dust_sprite.add(jump_particle_sprite)
 
-    def horizontal_movement_collision(self):
-        player = self.player.sprite
-        player.rect.x += player.direction.x * player.speed
-        # collide_sprites = self.terrain_sprites.sprites() + self.crate_sprites.sprites() + \
-        #    self.fg_palm_sprites.sprites()
-        for sprite in self.terrain_sprites.sprites() + self.crate_sprites.sprites() + self.fg_palm_sprites.sprites():
-            if sprite.rect.colliderect(player.rect):
-                if player.direction.x < 0:
-                    player.rect.left = sprite.rect.right
-                    player.on_left = True
-                    self.current_x = player.rect.left
-                elif player.direction.x > 0:
-                    player.rect.right = sprite.rect.left
-                    player.on_right = True
-                    self.current_x = player.rect.right
-        if player.on_left and (player.rect.left < self.current_x or player.direction.x >= 0):
-            player.on_left = False
-        if player.on_right and (player.rect.right > self.current_x or player.direction.x <= 0):
-            player.on_right = False
-
-    def vertical_movement_collision(self):
-        player = self.player.sprite
-        player.apply_gravity()
-        # collide_sprites = self.terrain_sprites.sprites() + self.crate_sprites.sprites() + \
-        #    self.fg_palm_sprites.sprites()
-        for sprite in self.terrain_sprites.sprites() + self.crate_sprites.sprites() + self.fg_palm_sprites.sprites():
-            if sprite.rect.colliderect(player.rect):
-                if player.direction.y > 0:
-                    player.rect.bottom = sprite.rect.top
-                    player.direction.y = 0
-                    player.on_ground = True
-                elif player.direction.y < 0:
-                    player.rect.top = sprite.rect.bottom
-                    player.direction.y = 0
-                    player.on_ceiling = True
-        if player.on_ground and player.direction.y < 0 or player.direction.y > 1:
-            player.on_ground = False
-        if player.on_ceiling and player.direction.y > 0.1:
-            player.on_ceiling = False
-
     # ruudun liikutus pelaajan mukaan
     def scroll_x(self):
         player = self.player.sprite
 
     def osumat(self):
+        pelaaja:Player = self.player.sprite
         #Vihu tappaa pelaajan
         for vihu in self.enemy_sprites:
-            if pygame.sprite.collide_rect(self.player.sprite, vihu):
-                return True
+            if pygame.sprite.collide_rect(pelaaja, vihu):
+                if pelaaja.rect.bottom <= vihu.rect.top + 12:
+                    vihu.kill()
+                    pelaaja.jump()
+                #elif (pelaaja.rect.right <= vihu.rect.left + 10) ^ (pelaaja.rect.left <= vihu.rect.right - 10):
+                #    print(pelaaja.rect.right)
+                #    print(vihu.rect.left)
+                #    pass
+                else:
+                    return 1
             
         #Pelaaja kerää kolikon
         for kolikko in self.coin_sprites:
-            if pygame.sprite.collide_rect(self.player.sprite, kolikko):
+            if pygame.sprite.collide_rect(pelaaja, kolikko):
                 kolikko.kill()
                 self.pistelaskuri += 1
                 print(self.pistelaskuri)
 
         #Pelaaja tippuu rotkoon ja kuolee
-        if self.player.sprite.rect.top > pygame.display.get_window_size()[1]:
-            return True
+        if pelaaja.rect.top > pygame.display.get_window_size()[1]:
+            return 1
+        
+        #Pelaaja osuu hattuun ja voittaa pelin
+        if pygame.sprite.collide_rect(pelaaja, self.goal.sprite):
+            return 2
     
     def run(self):
         # run the entire game/level
@@ -250,11 +223,14 @@ class Level:
 
         # pelaaja spraitit
         self.player.update()
-        self.horizontal_movement_collision()
-        self.vertical_movement_collision()
-        osuttu:bool = self.osumat()
-        if osuttu:
-            return True
+        pelaaja:Player = self.player.sprite
+        osumat:list = self.terrain_sprites.sprites() + self.crate_sprites.sprites() + self.fg_palm_sprites.sprites()
+        pelaaja.fysiikat(osumat)
+    
+
+        osuttu:int = self.osumat()
+        if osuttu != None:
+            return osuttu
             
         self.player.draw(self.display_surface)
         self.goal.update(self.world_shift)

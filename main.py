@@ -24,8 +24,6 @@ def main():
     pygame.init()
     SCREEN = pygame.display.set_mode((WIDTH, HEIGHT))
     
-    #Luo kello-olion
-    FPSlukko = pygame.time.Clock()
     
     #Kutsuu valikko-oliota
     valikko = paaValikko(WIDTH, HEIGHT)

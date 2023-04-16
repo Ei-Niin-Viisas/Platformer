@@ -1,4 +1,5 @@
 import pygame
+from pygame.locals import *
 from support import import_folder
 
 
@@ -20,9 +21,9 @@ class Player(pygame.sprite.Sprite):
 
         # player movement
         self.direction = pygame.math.Vector2(0, 0)
-        self.speed = 8
-        self.gravity = 0.8
-        self.jump_speed = -16
+        self.speed = 6
+        self.gravity = 0.7
+        self.jump_speed = -15
 
         # player status
         self.status = 'idle'
@@ -73,6 +74,8 @@ class Player(pygame.sprite.Sprite):
         elif self.on_ceiling:
             self.rect = self.image.get_rect(midtop=self.rect.midtop)
 
+
+
     def run_dust_animation(self):
         if self.status == 'run' and self.on_ground:
             self.dust_frame_index += self.dust_animation_speed
@@ -89,20 +92,62 @@ class Player(pygame.sprite.Sprite):
                 flipped_dust_particle = pygame.transform.flip(
                     dust_particle, True, False)
                 self.display_surface.blit(flipped_dust_particle, pos)
+    
+
+    def fysiikat(self,spritet:list):
+        player = self
+        
+        player.rect.x += player.direction.x * player.speed
+        for sprite in spritet:
+            if sprite.rect.colliderect(player.rect):
+                if player.direction.x < 0:
+                    player.rect.left = sprite.rect.right
+                    player.on_left = True
+                    self.current_x = player.rect.left
+                elif player.direction.x > 0:
+                    player.rect.right = sprite.rect.left
+                    player.on_right = True
+                    self.current_x = player.rect.right
+
+        if player.on_left and (player.rect.left < self.current_x or player.direction.x >= 0):
+            player.on_left = False
+        if player.on_right and (player.rect.right > self.current_x or player.direction.x <= 0):
+            player.on_right = False
+
+        player.apply_gravity()
+
+        for sprite in spritet:
+            if sprite.rect.colliderect(player.rect):
+                if player.direction.y > 0:
+                    player.rect.bottom = sprite.rect.top
+                    player.direction.y = 0
+                    player.on_ground = True
+                elif player.direction.y < 0:
+                    player.rect.top = sprite.rect.bottom
+                    player.direction.y = 0
+                    player.on_ceiling = True
+
+        if player.on_ground and player.direction.y < 0 or player.direction.y > 1:
+            player.on_ground = False
+        if player.on_ceiling and player.direction.y > 0.1:
+            player.on_ceiling = False
+
+
+
 
     def get_input(self):
         keys = pygame.key.get_pressed()
 
-        if keys[pygame.K_RIGHT]:
+        if keys[K_RIGHT] or keys[K_d]:
             self.direction.x = 1
             self.facing_right = True
-        elif keys[pygame.K_LEFT]:
+        elif keys[K_LEFT] or keys[K_a]:
             self.direction.x = -1
             self.facing_right = False
         else:
             self.direction.x = 0
 
-        if keys[pygame.K_SPACE] and self.on_ground:
+        if keys[K_SPACE] and self.on_ground:
             self.jump()
             self.create_jump_particles(self.rect.midbottom)
 
