@@ -30,7 +30,7 @@ class taso:
         self.FPSlukko = pygame.time.Clock()
 
     #Testi-metodi, joka piirtää punaisen "lattian"
-    def testi(self, indeksi):
+    def aja(self, indeksi):
         pygame.display.set_caption("Peli")
         pygame.display.flip()
 
