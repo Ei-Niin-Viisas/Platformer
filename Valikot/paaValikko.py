@@ -109,7 +109,7 @@ class paaValikko:
 
 
         for i in level_list:
-                level_name =  "level" + str(i)
+                level_name =  "level " + str(i+1)
                 level_text = self.get_font(45).render(f"{i+1}. {level_name}", True, "white")
                 level_rect = level_text.get_rect(center=(self.WIDTH/4, 260 + i*100))
 
