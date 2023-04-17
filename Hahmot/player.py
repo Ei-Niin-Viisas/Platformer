@@ -23,7 +23,7 @@ class Player(pygame.sprite.Sprite):
         self.direction = pygame.math.Vector2(0, 0)
         self.speed = 6
         self.gravity = 0.7
-        self.jump_speed = -15
+        self.jump_speed = -16
 
         # player status
         self.status = 'idle'

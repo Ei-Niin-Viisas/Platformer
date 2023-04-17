@@ -100,7 +100,7 @@ class paaValikko:
 
 
     def choose_level(self):
-        level_list = [0,1]
+        level_list = [0,1,2]
         apullista = []
         nappilista = []
         

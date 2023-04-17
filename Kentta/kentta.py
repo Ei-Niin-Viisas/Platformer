@@ -6,7 +6,7 @@ from Kentta.ui import ui
 from Kentta.kolikot import Kolikko
 from Hahmot.Player_vanha import player
 from Kentta.levels import Level
-from Kentta.game_data import *
+from Kentta.game_data import kentat
 
 #Luokka 
 class taso:
@@ -36,7 +36,7 @@ class taso:
 
         #kolikko = Kolikko(200, 500)
         #self.all_sprites.add(kolikko)
-        self.levels = Level(level_0, self.SCREEN)
+        self.levels = Level(kentat[indeksi], self.SCREEN)
 
         while True:
  
