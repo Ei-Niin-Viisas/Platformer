@@ -3,7 +3,7 @@ from csv import reader
 from asetukset import tile_size
 from os import walk
 
-
+#metofi kansion tuontia varten 
 def import_folder(path):
     surface_list = []
 
@@ -15,7 +15,7 @@ def import_folder(path):
 
     return surface_list
 
-
+#metodi csv tiedostojen lukemista varten
 def import_csv_layout(path):
     terrain_map = []
     with open(path) as map:
@@ -24,12 +24,13 @@ def import_csv_layout(path):
             terrain_map.append(list(row))
         return terrain_map
 
-
+#metodi kuvakarttojen leikkaamista ja leikattujen kuvien tallennusta varten
 def import_cut_graphics(path):
     surface = pygame.image.load(path).convert_alpha()
     tile_num_x = int(surface.get_size()[0] / tile_size)
     tile_num_y = int(surface.get_size()[1] / tile_size)
 
+    
     cut_tiles = []
     for row in range(tile_num_y):
         for col in range(tile_num_x):
