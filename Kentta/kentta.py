@@ -16,7 +16,18 @@ class taso:
     #Sandboxin konstruktori
     def __init__(self):
         self.SCREEN = pygame.display.get_surface()
+<<<<<<< HEAD
         self.WIDTH, self.HEIGHT  = pygame.display.get_window_size()
+=======
+        self.WIDHT =  widht
+        self.HEIGHT = height
+        self.PT1 = platform(widht, height)
+        #self.UI = ui(self.PT1, self.SCREEN)
+        
+        #t = Thread(target=self.UI.paivitaUI, args=())
+        #t.setDaemon(True)
+        #t.start()
+>>>>>>> main
 
 
         #self.UI = ui(self.PT1, self.SCREEN)
@@ -29,14 +40,22 @@ class taso:
         self.FPSlukko = pygame.time.Clock()
 
     #Testi-metodi, joka piirtää punaisen "lattian"
+<<<<<<< HEAD
     def testi(self, ):
+=======
+    def testi(self, indeksi):
+>>>>>>> main
         pygame.display.set_caption("Peli")
         pygame.display.flip()
+<<<<<<< HEAD
 
         #kolikko = Kolikko(200, 500)
         #self.all_sprites.add(kolikko)
         self.levels = Level(level_0, self.SCREEN)
 
+=======
+        print(indeksi)
+>>>>>>> main
         while True:
  
             for event in pygame.event.get():
