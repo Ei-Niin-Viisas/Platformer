@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.0" orientation="orthogonal" renderorder="right-down" width="60" height="11" tilewidth="64" tileheight="64" infinite="0" nextlayerid="10" nextobjectid="1">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="60" height="11" tilewidth="64" tileheight="64" infinite="0" nextlayerid="10" nextobjectid="1">
  <editorsettings>
-  <export target="../1/level_1..csv" format="csv"/>
+  <export target="../1/level_1.csv" format="csv"/>
  </editorsettings>
- <tileset firstgid="1" source="C:/Users/Elmer/Downloads/2D-Mario-style-platformer-main/2 - Level/levels/tilesets/terrain_tiles.tsx"/>
- <tileset firstgid="17" source="C:/Users/Elmer/Downloads/2D-Mario-style-platformer-main/2 - Level/levels/tilesets/grass_tiles.tsx"/>
- <tileset firstgid="22" source="C:/Users/Elmer/Downloads/2D-Mario-style-platformer-main/2 - Level/levels/tilesets/crates.tsx"/>
- <tileset firstgid="23" source="C:/Users/Elmer/Downloads/2D-Mario-style-platformer-main/2 - Level/levels/tilesets/coin_tiles.tsx"/>
- <tileset firstgid="25" source="C:/Users/Elmer/Downloads/2D-Mario-style-platformer-main/2 - Level/levels/tilesets/palms.tsx"/>
- <tileset firstgid="28" source="C:/Users/Elmer/Downloads/2D-Mario-style-platformer-main/2 - Level/levels/tilesets/enemy_tiles.tsx"/>
- <tileset firstgid="30" source="C:/Users/Elmer/Downloads/2D-Mario-style-platformer-main/2 - Level/levels/tilesets/player_tiles.tsx"/>
+ <tileset firstgid="1" source="../../../../2D-Mario-style-platformer-main/2 - Level/levels/tilesets/terrain_tiles.tsx"/>
+ <tileset firstgid="17" source="../../../../2D-Mario-style-platformer-main/2 - Level/levels/tilesets/grass_tiles.tsx"/>
+ <tileset firstgid="22" source="../../../../2D-Mario-style-platformer-main/2 - Level/levels/tilesets/crates.tsx"/>
+ <tileset firstgid="23" source="../../../../2D-Mario-style-platformer-main/2 - Level/levels/tilesets/coin_tiles.tsx"/>
+ <tileset firstgid="25" source="../../../../2D-Mario-style-platformer-main/2 - Level/levels/tilesets/palms.tsx"/>
+ <tileset firstgid="28" source="../../../../2D-Mario-style-platformer-main/2 - Level/levels/tilesets/enemy_tiles.tsx"/>
+ <tileset firstgid="30" source="../../../../2D-Mario-style-platformer-main/2 - Level/levels/tilesets/player_tiles.tsx"/>
  <layer id="6" name="bg_palms" width="60" height="11">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -100,14 +100,14 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="5" name="fg_palms" width="60" height="11" locked="1">
+ <layer id="5" name="fg_palms" width="60" height="11">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,25,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,25,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,25,0,0,0,0,0,0,0,0,0,0,0,0,0,0,25,0,0,
-0,0,25,0,0,0,0,0,0,0,26,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,26,0,0,0,0,0,0,0,0,0,0,0,0,0,26,0,
+0,25,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,25,0,0,
+0,0,25,0,0,0,0,0,0,0,26,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,26,0,0,0,0,0,26,0,0,0,0,0,0,0,26,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,26,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,25,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
