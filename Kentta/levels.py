@@ -11,7 +11,7 @@ from Hahmot.particles import ParticleEffect
 class Level:
     def __init__(self, level_data, surface):
         # perus setuppi
-        self.display_surface = surface
+        self.display_surface = pygame.display.get_surface()
         self.world_shift = -2
         self.pistelaskuri = 0
 
@@ -40,6 +40,10 @@ class Level:
         # koliket
         coin_layout = import_csv_layout(level_data['coins'])
         self.coin_sprites = self.create_tile_group(coin_layout, 'coins')
+        self.oletusFontti = pygame.font.Font("pics/font.ttf", 15)
+        self.laskuri = self.oletusFontti.render('kolikot: 0' , True , "black")
+        self.pisteet = self.laskuri.get_rect(topright = (screen_widht -40, 40))
+
 
         # foreground palmut
         fg_palm_layout = import_csv_layout(level_data['fg palms'])
@@ -194,6 +198,7 @@ class Level:
             if pygame.sprite.collide_rect(pelaaja, kolikko):
                 kolikko.kill()
                 self.pistelaskuri += 1
+                self.laskuri = self.oletusFontti.render('kolikot: ' + str(self.pistelaskuri) , True , "black")
                 print(self.pistelaskuri)
 
         #Pelaaja tippuu rotkoon ja kuolee
@@ -251,6 +256,8 @@ class Level:
         osuttu:int = self.osumat()
         if osuttu != None:
             return osuttu
+        
+        self.display_surface.blit(self.laskuri, self.pisteet)
             
         self.player.draw(self.display_surface)
         self.goal.update(self.world_shift)
