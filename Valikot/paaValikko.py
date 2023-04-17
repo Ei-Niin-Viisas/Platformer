@@ -124,14 +124,9 @@ class paaValikko:
                     sys.exit()
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if PLAY_BUTTON.checkForInput(MENU_MOUSE_POS):
-<<<<<<< HEAD
-                        #self.play()
                         #pygame.mixer.stop()
-                        return
-=======
                         chosen_level = self.choose_level()
                         return chosen_level
->>>>>>> main
                     if OPTIONS_BUTTON.checkForInput(MENU_MOUSE_POS):
                         self.options()
                     if QUIT_BUTTON.checkForInput(MENU_MOUSE_POS):
