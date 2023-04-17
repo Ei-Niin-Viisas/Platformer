@@ -1,66 +1,65 @@
-import pygame, os, sys, time
+import pygame
+import os
 from Valikot.paaValikko import paaValikko
 from Kentta.kentta import *
+from asetukset import *
 from asetukset import asetukset
 from threading import Thread
 
+# main-funktio
 
-#main-funktio
-#sisältää vain turhaa testikoodia
 def main():
-    #Hakee fps:n ja näytön resoluution asetukset-oliosta
+    # Hakee näytön resoluution asetukset-oliosta
     Setting = asetukset(1)
     lista = Setting.arvot()
-    FPS = lista[0]
     HEIGHT = lista[1]
-    WIDHT = lista[2]
+    WIDTH = lista[2]
+    
+    #Tausta
+    bg = pygame.image.load("pics/Background.png")       #Tämän sijasta voisi olla lista, jotta saadaan kullekkin kentälle oma tausta
     
     #Asettaa ikkunan keskelle näyttöä
-    x = (1920-WIDHT)/2
+    x = (1920-WIDTH)/2
     y = (1080-HEIGHT)/2
-    os.environ['SDL_VIDEO_WINDOW_POS'] = "%d,%d" % (x,y)
-    
-    #Avaa ikkunan
+    os.environ['SDL_VIDEO_WINDOW_POS'] = "%d,%d" % (x, y)
+
+    # Avaa ikkunan
     pygame.init()
-    SCREEN = pygame.display.set_mode((WIDHT, HEIGHT))
+    SCREEN = pygame.display.set_mode((WIDTH, HEIGHT))
     
-    #Luo kello-olion
-    FramePerSec = pygame.time.Clock()
     
     #Kutsuu valikko-oliota
-    valikko = paaValikko(SCREEN, WIDHT, HEIGHT)
+    # valikko = paaValikko(SCREEN, WIDHT, HEIGHT)
+    # valikko.main_menu()
+    # #Game-Active variaabeli
+    # pygame.display.set_caption("Peli")
+    # SCREEN.blit(bg, (0, 0))
+    valikko = paaValikko(WIDTH, HEIGHT)
 
     #Kutsuu kentta-oliota
-    kentta = taso(SCREEN, WIDHT, HEIGHT)
-
-
-
-    #Game-Active variaabeli
+    
+    kentta = taso()
+    
+    # Game-Active variaabeli
     running = True
+
 
     # Gameloop
     while running:
-    #Check For Quit
-        #Siirtyy päävalikkoon
-        valikko.main_menu()
+        # Check For Quit
+        # Siirtyy päävalikkoon
+        indeksi:int = valikko.main_menu()
 
-        #Kutsuu kentan metodia testi, jonka on tarkoitus olla sandbox, 
-        #jossa voi kokeilla muita luokkia
-        kentta.testi()
-
-        
-
-
+        # Kutsuu kentan metodia testi, jonka on tarkoitus olla sandbox,
+        # jossa voi kokeilla muita luokkia
+        kentta.testi(indeksi)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
         
-        FramePerSec.tick(FPS)
-        pygame.display.update()
 
 
-
-#Kutsutaan main-funktiota
+# Kutsutaan main-funktiota
 if __name__ == "__main__":
     main()

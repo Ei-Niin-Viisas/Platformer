@@ -1,6 +1,5 @@
 import pygame, sys
 import pygame
-from Kentta.kentta import platform
 import random
 
 
