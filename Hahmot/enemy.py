@@ -1,7 +1,7 @@
 import pygame
-from tiles import AnimatedTile
+from Kentta.tiles import AnimatedTile
 from random import randint
-from player import Player
+from Hahmot.player import Player
 
 
 class Enemy(AnimatedTile):

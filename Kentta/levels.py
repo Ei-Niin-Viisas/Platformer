@@ -1,11 +1,11 @@
 import pygame
-from support import import_csv_layout, import_cut_graphics
+from Kentta.support import import_csv_layout, import_cut_graphics
 from asetukset import tile_size, screen_height, screen_widht
-from tiles import Tile, StaticTile, Crate, Coin, Palm
-from enemy import Enemy
-from decorations import Sky, Water, Clouds
-from player import Player
-from particles import ParticleEffect
+from Kentta.tiles import Tile, StaticTile, Crate, Coin, Palm
+from Hahmot.enemy import Enemy
+from Kentta.decorations import Sky, Water, Clouds
+from Hahmot.player import Player
+from Hahmot.particles import ParticleEffect
 
 
 class Level:

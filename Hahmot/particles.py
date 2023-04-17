@@ -1,5 +1,5 @@
 import pygame
-from support import import_folder
+from Kentta.support import import_folder
 
 
 class ParticleEffect(pygame.sprite.Sprite):

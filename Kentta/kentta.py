@@ -5,8 +5,8 @@ from threading import Thread
 from Kentta.ui import ui
 from Kentta.kolikot import Kolikko
 from Hahmot.Player_vanha import player
-from levels import Level
-from game_data import *
+from Kentta.levels import Level
+from Kentta.game_data import *
 
 #Luokka 
 class taso:
@@ -62,7 +62,7 @@ class taso:
             if osuttu == 1:
                 self.SCREEN.fill((0,0,0))
                 smallfont = pygame.font.SysFont('Corbel',70) 
-                text1 = smallfont.render('Kualit homo!!!' , True , "red")
+                text1 = smallfont.render('Kualit huano!!!' , True , "red")
                 self.SCREEN.blit(text1, (self.WIDTH/3, self.HEIGHT/2))
                 pygame.display.flip()
                 time.sleep(2)

@@ -1,7 +1,7 @@
 import pygame
 from asetukset import vertical_tile_number, tile_size, screen_widht
-from tiles import AnimatedTile, StaticTile
-from support import import_folder
+from Kentta.tiles import AnimatedTile, StaticTile
+from Kentta.support import import_folder
 from random import choice, randint
 
 

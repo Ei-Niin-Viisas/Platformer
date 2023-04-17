@@ -1,6 +1,6 @@
 import pygame
 from pygame.locals import *
-from support import import_folder
+from Kentta.support import import_folder
 
 
 class Player(pygame.sprite.Sprite):
