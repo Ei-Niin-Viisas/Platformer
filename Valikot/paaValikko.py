@@ -16,45 +16,6 @@ class paaValikko:
     def get_font(self, size):
         return pygame.font.Font("pics/font.ttf", size)
     
-    def play(self):
-        pygame.display.set_caption("Play")
-        palaa:bool = False
-
-
-        while True:
-            PLAY_MOUSE_POS = pygame.mouse.get_pos()
-
-        
-            self.SCREEN.fill("black")
-            
-            PLAY_TEXT = self.get_font(45).render("This is the play screen", True, "white")
-            PLAY_RECT = PLAY_TEXT.get_rect(center=(self.WIDTH/2, 260))
-            self.SCREEN.blit(PLAY_TEXT, PLAY_RECT) 
-            
-            
-            
-            PLAY_BACK = Button(image= None, pos = (self.WIDTH/2, 460),
-                            text_input = "BACK", font = self.get_font(45), base_color = "White", hovering_color = "Green")
-            
-            PLAY_BACK.changeColor(PLAY_MOUSE_POS)
-            PLAY_BACK.update(self.SCREEN)
-            
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    pygame.quit()
-                    sys.exit()
-                if event.type == pygame.MOUSEBUTTONDOWN:
-                    if PLAY_BACK.checkForInput(PLAY_MOUSE_POS):
-                        #self.main_menu()
-                        palaa = True
-                        
-            pygame.display.update()
-
-            if PLAY_MOUSE_POS.checkForInput(pygame.mouse.get_pos()):
-                self.ask_level()
-
-            if palaa:
-                break  
         
     def options(self):
         pygame.display.set_caption("Options")
@@ -84,6 +45,7 @@ class paaValikko:
                         #self.main_menu()
                         palaa = True
 
+            self.lukko.tick(60)
             pygame.display.update()
             if palaa:
                 break
@@ -174,7 +136,8 @@ class paaValikko:
                         for nappi in range(len(nappilista)):
                             if nappilista[nappi].checkForInput(pygame.mouse.get_pos()):
                                 selected_level = nappi
-        
+
+            self.lukko.tick(60)
             pygame.display.update()
         
         return selected_level

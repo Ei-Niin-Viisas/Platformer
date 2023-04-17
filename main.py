@@ -43,9 +43,6 @@ def main():
     # Game-Active variaabeli
     running = True
 
-    #pygame.mixer.init()
-    #pygame.mixer.music.load("music/BTD6.mp3", "mp3")
-    #pygame.mixer.music.play()
 
     # Gameloop
     while running:

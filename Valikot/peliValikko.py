@@ -8,6 +8,7 @@ class pauseValikko(pygame.sprite.Sprite):
         self.SCREEN = screen
         self.width = width/2
         self.height = height/2
+        self.lukko = pygame.time.Clock()
 
 
     def valikko(self):
@@ -90,5 +91,7 @@ class pauseValikko(pygame.sprite.Sprite):
             self.SCREEN.blit(text1_surface, text1_rect) 
             self.SCREEN.blit(text2_surface, text2_rect) 
             
-            # updates the frames of the game 
+            # updates the frames of the game
+
+            self.lukko.tick(60)
             pygame.display.update(nelikulmio)
