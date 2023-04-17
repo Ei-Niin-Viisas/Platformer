@@ -19,4 +19,4 @@ class ui(pygame.sprite.Sprite):
             pygame.draw.rect(self.SCREEN,"green",[1200,10,40,40]) 
             pygame.display.update(self)
             self.alusta.naytaLaskuri()
-            self.kello.tick(60)
+            #self.kello.tick(60)
