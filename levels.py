@@ -1,6 +1,6 @@
 import pygame
 from support import import_csv_layout, import_cut_graphics
-from asetukset import tile_size, screen_height
+from asetukset import tile_size, screen_height, screen_widht
 from tiles import Tile, StaticTile, Crate, Coin, Palm
 from enemy import Enemy
 from decorations import Sky, Water, Clouds
@@ -151,8 +151,28 @@ class Level:
         self.dust_sprite.add(jump_particle_sprite)
 
     # ruudun liikutus pelaajan mukaan
-    def scroll_x(self):
+    def scroll_with_player(self):
         player = self.player.sprite
+        player_x = player.rect.centerx
+        suunta_x = player.direction.x
+        
+        # Kun pelaaja liikkuu tiettyyn pisteeseen asti,
+        # sen sijaan että liikutettaisiin pelaajaa,
+        # liikutetaankin ympäröivää maailmaa vastakkaiseen
+        # suuntaan
+
+
+        # Kun liikutaan vasemmalle
+        if player_x < screen_widht / 2.5 and suunta_x < 0:
+            self.world_shift = 6
+            player.speed = 0
+        # Ja oikealle
+        elif player_x > screen_widht - (screen_widht / 2.5) and suunta_x > 0:
+            self.world_shift = -6
+            player.speed = 0
+        else:
+            self.world_shift = 0
+            player.speed = 6
 
     def osumat(self):
         pelaaja:Player = self.player.sprite
@@ -235,6 +255,8 @@ class Level:
         self.player.draw(self.display_surface)
         self.goal.update(self.world_shift)
         self.goal.draw(self.display_surface)
+
+        self.scroll_with_player()
 
         # vesi pohjalle
         self.Water.draw(self.display_surface, self.world_shift)

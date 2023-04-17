@@ -8,7 +8,6 @@ from Hahmot.Player_vanha import player
 from levels import Level
 from game_data import *
 
-
 #Luokka 
 class taso:
     #Tähän tason luonti sitten, kun se on tehty
