@@ -4,7 +4,7 @@ from Kentta.tiles import AnimatedTile, StaticTile
 from Kentta.support import import_folder
 from random import choice, randint
 
-
+#luodaan luokka tausta taivasta varten
 class Sky:
     def __init__(self, horizon):
         self.top = pygame.image.load(
@@ -33,7 +33,7 @@ class Sky:
             else:
                 surface.blit(self.bottom, (0, y))
 
-
+#luokka kentän pohjalla olevaa vettä varten 
 class Water:
     def __init__(self, top, level_width):
         water_start = -screen_widht
@@ -53,7 +53,7 @@ class Water:
         self.water_sprites.update(shift)
         self.water_sprites.draw(surface)
 
-
+#luokka taustan pilviä varten
 class Clouds:
     def __init__(self, horizon, level_widht, cloud_number):
         cloud_surf_list = import_folder('Kentta/graphics/decoration/clouds')
@@ -62,7 +62,8 @@ class Clouds:
         min_y = 0
         max_y = horizon
         self.cloud_sprites = pygame.sprite.Group()
-
+        
+        #randomisoidaan pilvien määrää
         for cloud in range(cloud_number):
             cloud = choice(cloud_surf_list)
             x = randint(min_x, max_x)
