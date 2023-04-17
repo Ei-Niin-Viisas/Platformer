@@ -186,10 +186,6 @@ class Level:
                 if pelaaja.rect.bottom <= vihu.rect.top + 12:
                     vihu.kill()
                     pelaaja.jump()
-                #elif (pelaaja.rect.right <= vihu.rect.left + 10) ^ (pelaaja.rect.left <= vihu.rect.right - 10):
-                #    print(pelaaja.rect.right)
-                #    print(vihu.rect.left)
-                #    pass
                 else:
                     return 1
             

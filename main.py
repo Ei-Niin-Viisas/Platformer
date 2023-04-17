@@ -4,8 +4,6 @@ from Valikot.paaValikko import paaValikko
 from Kentta.kentta import *
 from asetukset import *
 from asetukset import asetukset
-from threading import Thread
-
 # main-funktio
 
 def main():
@@ -14,9 +12,6 @@ def main():
     lista = Setting.arvot()
     HEIGHT = lista[1]
     WIDTH = lista[2]
-    
-    #Tausta
-    bg = pygame.image.load("pics/Background.png")       #Tämän sijasta voisi olla lista, jotta saadaan kullekkin kentälle oma tausta
     
     #Asettaa ikkunan keskelle näyttöä
     x = (1920-WIDTH)/2
@@ -29,11 +24,6 @@ def main():
     
     
     #Kutsuu valikko-oliota
-    # valikko = paaValikko(SCREEN, WIDHT, HEIGHT)
-    # valikko.main_menu()
-    # #Game-Active variaabeli
-    # pygame.display.set_caption("Peli")
-    # SCREEN.blit(bg, (0, 0))
     valikko = paaValikko(WIDTH, HEIGHT)
 
     #Kutsuu kentta-oliota
@@ -50,8 +40,7 @@ def main():
         # Siirtyy päävalikkoon
         indeksi:int = valikko.main_menu()
 
-        # Kutsuu kentan metodia testi, jonka on tarkoitus olla sandbox,
-        # jossa voi kokeilla muita luokkia
+        # Kutsuu kentan metodia
         kentta.aja(indeksi)
 
         for event in pygame.event.get():
