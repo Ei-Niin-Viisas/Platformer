@@ -19,7 +19,7 @@ level_1 = {
     'constraints': 'Kentta/levels/1/level_1_constraints.csv',
     'player': 'Kentta/levels/1/level_1_player.csv',
     'grass': 'Kentta/levels/1/level_1_grass.csv'}
-level_2 {
+level_2 = {
     'terrain': 'Kentta/levels/2/level_2_terrain.csv',
     'coins': 'Kentta/levels/2/level_2_coins.csv',
     'fg palms': 'Kentta/levels/2/level_2_fg_palms.csv',
