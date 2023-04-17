@@ -20,3 +20,6 @@ Jos jaksaa
 
 Ensin:
 - Valikko
+
+Jira:
+https://prokoodarit.atlassian.net/jira/core/projects/PEL/board?atlOrigin=eyJpIjoiZGVjZTMxMGY3MDc4NDIwN2FkOTk5NjFjMGQ3NTM1YzQiLCJwIjoiaiJ9
