@@ -47,12 +47,12 @@ def main():
     while running:
         # Check For Quit
         # Siirtyy päävalikkoon
-        # valikko.main_menu()
+        indeksi:int = valikko.main_menu()
 
         # Kutsuu kentan metodia testi, jonka on tarkoitus olla sandbox,
         # jossa voi kokeilla muita luokkia
-        # kentta.testi()
-        levels.run()
+        kentta.testi(indeksi)
+        #levels.run()
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:

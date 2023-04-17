@@ -16,22 +16,22 @@ class taso:
         self.WIDHT =  widht
         self.HEIGHT = height
         self.PT1 = platform(widht, height)
-        self.UI = ui(self.PT1, self.SCREEN)
+        #self.UI = ui(self.PT1, self.SCREEN)
         
-        t = Thread(target=self.UI.paivitaUI, args=())
-        t.setDaemon(True)
-        t.start()
+        #t = Thread(target=self.UI.paivitaUI, args=())
+        #t.setDaemon(True)
+        #t.start()
 
         self.all_sprites = pygame.sprite.Group()
         self.all_sprites.add(self.PT1)
         self.FramePerSec = pygame.time.Clock()
 
     #Testi-metodi, joka piirtää punaisen "lattian"
-    def testi(self):
+    def testi(self, indeksi):
         pygame.display.set_caption("Peli")
         self.SCREEN.fill((0,0,0))
         pygame.display.flip()
-
+        print(indeksi)
         while True:
  
             for event in pygame.event.get():

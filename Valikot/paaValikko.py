@@ -1,6 +1,6 @@
 import sys, pygame
 from Valikot.button import Button
-import pygame_menu
+#import pygame_menu
 
 #Luodaan luokka/olio päävalikolle
 class paaValikko:    
@@ -118,9 +118,7 @@ class paaValikko:
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if PLAY_BUTTON.checkForInput(MENU_MOUSE_POS):
                         chosen_level = self.choose_level()
-                        self.play(chosen_level)                     
-                        #self.play()
-                        return
+                        return chosen_level
                     if OPTIONS_BUTTON.checkForInput(MENU_MOUSE_POS):
                         self.options()
                     if QUIT_BUTTON.checkForInput(MENU_MOUSE_POS):
@@ -131,18 +129,31 @@ class paaValikko:
 
 
     def choose_level(self):
-        level_list = []
+        level_list = [0,1]
+        apullista = []
+        nappilista = []
         
         selected_level = None
-        while selected_level is None:
-            for i, level in enumerate(level_list):
-                level_name, level_path = level
+        self.SCREEN.fill("black")
+
+
+        for i in level_list:
+                level_name =  "level" + str(i)
                 level_text = self.get_font(45).render(f"{i+1}. {level_name}", True, "white")
-                level_rect = level_text.get_rect(center=(self.WIDTH/2, 260 + i*100))
-                self.SCREEN.blit(level_text, level_rect)
-            
-                level_button = Button(image=None, pos=(self.WIDTH/2, 360 + i*100),
+                level_rect = level_text.get_rect(center=(self.WIDTH/4, 260 + i*100))
+
+                level_button = Button(image=None, pos=((self.WIDTH*3)/4, 260 + i*100),
                     text_input="SELECT", font=self.get_font(45), base_color="White", hovering_color="Green")
+                
+                apullista.append((level_text, level_rect))
+                nappilista.append(level_button)
+
+        while selected_level is None:
+
+            for i in range(len(apullista)):
+                self.SCREEN.blit(apullista[i][0], apullista[i][1])
+                level_button = nappilista[i]
+
                 level_button.changeColor(pygame.mouse.get_pos())
                 level_button.update(self.SCREEN)
             
@@ -151,10 +162,11 @@ class paaValikko:
                         pygame.quit()
                         sys.exit()
                     if event.type == pygame.MOUSEBUTTONDOWN:
-                        if level_button.checkForInput(pygame.mouse.get_pos()):
-                            selected_level = level_path
+                        for nappi in range(len(nappilista)):
+                            if nappilista[nappi].checkForInput(pygame.mouse.get_pos()):
+                                selected_level = nappi
         
-        pygame.display.update()
+            pygame.display.update()
         
         return selected_level
 
