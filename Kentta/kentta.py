@@ -61,17 +61,20 @@ class taso:
             #If-lause, joka näyttää kuolemaruudun ja heittää pelaajan päävalikkoon
             if osuttu == 1:
                 self.SCREEN.fill((0,0,0))
-                smallfont = pygame.font.SysFont('Corbel',70) 
-                text1 = smallfont.render('Kualit huano!!!' , True , "red")
-                self.SCREEN.blit(text1, (self.WIDTH/3, self.HEIGHT/2))
+                
+                smallfont = pygame.font.Font("pics/font.ttf", 75)
+                text1 = smallfont.render('YOU DIED' , True , "red")
+                text1_rect = text1.get_rect(center = (self.WIDTH/2, self.HEIGHT/2))
+                self.SCREEN.blit(text1, text1_rect)
                 pygame.display.flip()
                 time.sleep(2)
                 return
             elif osuttu == 2:
                 self.SCREEN.fill("white")
-                smallfont = pygame.font.SysFont('Corbel',70) 
-                text1 = smallfont.render('Voitit kentän!!!' , True , "blue")
-                self.SCREEN.blit(text1, (self.WIDTH/3, self.HEIGHT/2))
+                smallfont = pygame.font.Font("pics/font.ttf", 75)
+                text1 = smallfont.render('YOU WIN' , True , "blue")
+                text1_rect = text1.get_rect(center = (self.WIDTH/2, self.HEIGHT/2))
+                self.SCREEN.blit(text1, text1_rect)
                 pygame.display.flip()
                 time.sleep(2)
                 return
