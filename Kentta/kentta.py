@@ -34,8 +34,10 @@ class taso:
         pygame.display.set_caption("Peli")
         pygame.display.flip()
 
-        #kolikko = Kolikko(200, 500)
-        #self.all_sprites.add(kolikko)
+        pygame.mixer.init()
+        taustamusiikki = pygame.mixer.Sound("music/BTD6.mp3")
+        taustamusiikki.play()
+
         self.levels = Level(kentat[indeksi], self.SCREEN)
 
         while True:
@@ -68,6 +70,7 @@ class taso:
                 self.SCREEN.blit(text1, text1_rect)
                 pygame.display.flip()
                 time.sleep(2)
+                taustamusiikki.stop()
                 return
             elif osuttu == 2:
                 self.SCREEN.fill("white")
@@ -77,6 +80,7 @@ class taso:
                 self.SCREEN.blit(text1, text1_rect)
                 pygame.display.flip()
                 time.sleep(2)
+                taustamusiikki.stop()
                 return
 
             
