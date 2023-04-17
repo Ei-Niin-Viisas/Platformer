@@ -56,7 +56,6 @@ def main():
         # Kutsuu kentan metodia testi, jonka on tarkoitus olla sandbox,
         # jossa voi kokeilla muita luokkia
         kentta.testi(indeksi)
-        #levels.run()
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
