@@ -16,16 +16,16 @@ class paaValikko:
     def get_font(self, size):
         return pygame.font.Font("pics/font.ttf", size)
     
-        
+    #Asetukset-valikko    
     def options(self):
         pygame.display.set_caption("Options")
         palaa = False
         
         while True:
             OPTIONS_MOUSE_POS = pygame.mouse.get_pos()
-            
+            #Täyttää ruudun valkoisella
             self.SCREEN.fill("white")
-            
+            #Valitaan fontti
             OPTIONS_TEXT = self.get_font(45).render("This is OPTIONS screen.", True, "black")
             OPTIONS_RECT = OPTIONS_TEXT.get_rect(center=(self.WIDTH/2, 260))
             self.SCREEN.blit(OPTIONS_TEXT, OPTIONS_RECT)
@@ -35,7 +35,7 @@ class paaValikko:
         
             OPTIONS_BACK.changeColor(OPTIONS_MOUSE_POS)
             OPTIONS_BACK.update(self.SCREEN)
-            
+            #Tarkistetaan onko nappia painettu
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
@@ -48,7 +48,7 @@ class paaValikko:
             pygame.display.update()
             if palaa:
                 break
-
+    #Päävalikko
     def main_menu(self):
 
         pygame.display.set_caption("Menu")
@@ -59,11 +59,13 @@ class paaValikko:
 
         MENU_TEXT = self.get_font(100).render("MAIN MENU", True, "#b68f40")
         MENU_RECT = MENU_TEXT.get_rect(center=(self.WIDTH/2, self.HEIGHT/2-250))
-        
+        #Pelaa-nappulalle asetetaan kuva, fontti ja väri
         PLAY_BUTTON = Button(image=pygame.image.load("pics/Play Rect.png"), pos=(self.WIDTH/2, self.HEIGHT/2-100),
                             text_input = "PLAY", font = self.get_font(75), base_color="#d7fcd4", hovering_color="White")
+        #Asetukset-nappulalle asetetaan kuva, fontti ja väri
         OPTIONS_BUTTON = Button(image = pygame.image.load("pics/Options Rect.png"), pos=(self.WIDTH/2, self.HEIGHT/2+100),
                             text_input = "OPTIONS", font = self.get_font(75), base_color="#d7fcd4", hovering_color = "White")
+        #Lopeta-nappulalle asetetaan kuva, fontti ja väri
         QUIT_BUTTON = Button(image=pygame.image.load("pics/Quit Rect.png"), pos=(self.WIDTH/2, self.HEIGHT/2+250),
                             text_input="QUIT", font = self.get_font(75), base_color="#d7fcd4", hovering_color= "White")
         
@@ -73,11 +75,11 @@ class paaValikko:
             self.SCREEN.blit(MENU_TEXT,MENU_RECT)
             
             MENU_MOUSE_POS = pygame.mouse.get_pos()
-            
+            #Vaihdetaan napin väriä, jos hiiri on sen päällä
             for button in [PLAY_BUTTON, OPTIONS_BUTTON, QUIT_BUTTON]:
                 button.changeColor(MENU_MOUSE_POS)
                 button.update(self.SCREEN)
-                
+            #Tarkistettiin mitä nappia painetaan   
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
@@ -97,7 +99,7 @@ class paaValikko:
             self.lukko.tick(60)  
             pygame.display.update()
 
-
+    #Luodaan valikko missä voidaan valita pelattava taso
     def choose_level(self):
         level_list = [0,1,2]
         apullista = []
@@ -106,7 +108,7 @@ class paaValikko:
         selected_level = None
         self.SCREEN.fill("black")
 
-
+        
         for i in level_list:
                 level_name =  "level " + str(i+1)
                 level_text = self.get_font(45).render(f"{i+1}. {level_name}", True, "white")
@@ -119,11 +121,11 @@ class paaValikko:
                 nappilista.append(level_button)
 
         while selected_level is None:
-
+            #Tarkistetaan mikä taso valitaan
             for i in range(len(apullista)):
                 self.SCREEN.blit(apullista[i][0], apullista[i][1])
                 level_button = nappilista[i]
-
+                #Nappi vaihtaa väriä, kun hiiri menee sen päälle
                 level_button.changeColor(pygame.mouse.get_pos())
                 level_button.update(self.SCREEN)
             
