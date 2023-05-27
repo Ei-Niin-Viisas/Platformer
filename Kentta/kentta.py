@@ -7,30 +7,21 @@ from Kentta.game_data import kentat
 
 #Luokka 
 class taso:
-    #Tähän tason luonti sitten, kun se on tehty
-    #def __init__(self, taso:list, player):
-    #    pass
 
-    #Sandboxin konstruktori
+    #Luokan konstruktori
     def __init__(self):
         self.SCREEN = pygame.display.get_surface()
         self.WIDTH, self.HEIGHT  = pygame.display.get_window_size()
-
-
-        #self.UI = ui(self.PT1, self.SCREEN)
         self.levels = None
-        
-        #t = Thread(target=self.UI.paivitaUI, args=())
-        #t.setDaemon(True)
-        #t.start()
-
         self.FPSlukko = pygame.time.Clock()
 
-    #Testi-metodi, joka piirtää punaisen "lattian"
+
+    #Testi-metodi, joka saa kentän numeron ja alkaa pyörittää silmukkaa, jossa kenttää päivitetään.
     def aja(self, indeksi):
         pygame.display.set_caption("Peli")
         pygame.display.flip()
 
+        #Käynnistää musiikin
         pygame.mixer.init()
         taustamusiikki = pygame.mixer.Sound("music/BTD6.mp3")
         taustamusiikki.play()
@@ -58,6 +49,7 @@ class taso:
             osuttu:int = self.levels.run()
 
             #If-lause, joka näyttää kuolemaruudun ja heittää pelaajan päävalikkoon
+            #tai näytää voitto ruudun maaliin osuttaessa.
             if osuttu == 1:
                 self.SCREEN.fill((0,0,0))
                 
@@ -83,26 +75,3 @@ class taso:
             
             self.FPSlukko.tick(60)
             pygame.display.flip()
-
-
-#Platform-luokka sandboxia varten
-class platform(pygame.sprite.Sprite):
-    def __init__(self, width, height):
-        super().__init__()
-        self.surf = pygame.Surface((width, 20))
-        self.surf.fill((255,0,0))
-        self.rect = self.surf.get_rect(center = (width/2, height - 10))
-        self.counter = 0
-
-    #Metodi, joka vaihtaa platformin väriä
-    def vaihdaVari(self):
-        if self.counter%2 == 0:
-            self.surf.fill((0,255,255))
-            self.counter += 1
-        else:
-            self.surf.fill((255,0,0))
-            self.counter += 1
-
-    def naytaLaskuri(self):
-        #print(self.counter)
-        pass
