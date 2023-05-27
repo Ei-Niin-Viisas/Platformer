@@ -2,7 +2,7 @@ import pygame
 from pygame.locals import *
 from Kentta.support import import_folder
 
-
+#Pelaajan luokka 
 class Player(pygame.sprite.Sprite):
     def __init__(self, pos, surface, create_jump_particles):
         super().__init__()
@@ -60,7 +60,7 @@ class Player(pygame.sprite.Sprite):
             flipped_image = pygame.transform.flip(image, True, False)
             self.image = flipped_image
 
-        # set the rect
+        # set the rectangle
         if self.on_ground and self.on_right:
             self.rect = self.image.get_rect(bottomright=self.rect.bottomright)
         elif self.on_ground and self.on_left:
@@ -93,7 +93,7 @@ class Player(pygame.sprite.Sprite):
                     dust_particle, True, False)
                 self.display_surface.blit(flipped_dust_particle, pos)
     
-
+    #pelaajalle fysiikkojen luonti esim painovoima
     def fysiikat(self,spritet:list):
         player = self
         
@@ -134,7 +134,7 @@ class Player(pygame.sprite.Sprite):
 
 
 
-
+    # ohjaa pelaajan liikettä
     def get_input(self):
         keys = pygame.key.get_pressed()
 
